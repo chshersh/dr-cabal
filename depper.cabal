@@ -1,0 +1,81 @@
+cabal-version:       3.0
+name:                depper
+version:             0.0.0.0
+synopsis:            See README for more info
+description:
+    See README for more info.
+    See [README.md](https://github.com/chshersh/depper#depper) for more details.
+homepage:            https://github.com/chshersh/depper
+bug-reports:         https://github.com/chshersh/depper/issues
+license:             MPL-2.0
+license-file:        LICENSE
+author:              Dmitrii Kovanikov
+maintainer:          Dmitrii Kovanikov <kovanikov@gmail.com>
+copyright:           2022 Dmitrii Kovanikov
+build-type:          Simple
+extra-doc-files:     README.md
+                     CHANGELOG.md
+tested-with:         GHC == 8.6.5
+                     GHC == 8.8.4
+                     GHC == 9.0.2
+
+source-repository head
+  type:                git
+  location:            https://github.com/chshersh/depper.git
+
+common common-options
+  build-depends:       base >= 4.12.0.0 && < 4.16
+                     , relude
+
+  mixins:              base hiding (Prelude)
+                     , relude (Relude as Prelude)
+
+  ghc-options:         -Wall
+                       -Wcompat
+                       -Widentities
+                       -Wincomplete-uni-patterns
+                       -Wincomplete-record-updates
+                       -Wredundant-constraints
+                       -Wnoncanonical-monad-instances
+  if impl(ghc >= 8.2)
+    ghc-options:       -fhide-source-paths
+  if impl(ghc >= 8.4)
+    ghc-options:       -Wmissing-export-lists
+                       -Wpartial-fields
+  if impl(ghc >= 8.8)
+    ghc-options:       -Wmissing-deriving-strategies
+                       -fwrite-ide-info
+                       -hiedir=.hie
+  if impl(ghc >= 8.10)
+    ghc-options:       -Wunused-packages
+
+  default-language:    Haskell2010
+  default-extensions:  ConstraintKinds
+                       DeriveGeneric
+                       DerivingStrategies
+                       GeneralizedNewtypeDeriving
+                       InstanceSigs
+                       KindSignatures
+                       LambdaCase
+                       OverloadedStrings
+                       RecordWildCards
+                       ScopedTypeVariables
+                       StandaloneDeriving
+                       TupleSections
+                       TypeApplications
+                       ViewPatterns
+
+library
+  import:              common-options
+  hs-source-dirs:      src
+  exposed-modules:     Depper
+
+test-suite depper-test
+  import:              common-options
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Spec.hs
+  build-depends:       depper
+  ghc-options:         -threaded
+                       -rtsopts
+                       -with-rtsopts=-N
