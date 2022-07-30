@@ -11,8 +11,8 @@ module DrCabal
     ) where
 
 import DrCabal.Cli (Command (..), readCommand)
-import DrCabal.Profile (profile)
-import DrCabal.Watch (watch)
+import DrCabal.Profile (runProfile)
+import DrCabal.Watch (runWatch)
 
 
 main :: IO ()
@@ -20,5 +20,5 @@ main = readCommand >>= runDrCabal
 
 runDrCabal :: Command -> IO ()
 runDrCabal = \case
-    Watch args   -> watch args
-    Profile args -> profile args
+    Watch args   -> runWatch args
+    Profile args -> runProfile args

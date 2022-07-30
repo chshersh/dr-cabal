@@ -7,7 +7,7 @@ See README for more info
 -}
 
 module DrCabal.Profile
-    ( profile
+    ( runProfile
     ) where
 
 import Colourista.Pure (blue, cyan, formatWith, red, yellow)
@@ -23,8 +23,8 @@ import qualified Data.Map.Strict as Map
 import qualified Data.Text as Text
 
 
-profile :: ProfileArgs -> IO ()
-profile ProfileArgs{..} = do
+runProfile :: ProfileArgs -> IO ()
+runProfile ProfileArgs{..} = do
     terminalWidth <- getTerminalSize >>= \case
         Just (_height, width) -> pure width
         Nothing -> do
@@ -52,7 +52,7 @@ createProfileChart :: Int -> [Entry] -> Text
 createProfileChart width l = case l of
     [] -> unlines
         [ "No cabal build entries found. Have you already built dependency?"
-        , "Try removing global cabal store cache and rerunning again."
+        , "Try removing global cabal store cache and rerunning 'dr-cabal watch' again."
         ]
     entries ->
         let start = List.minimum $ map entryStart entries in
@@ -142,12 +142,13 @@ formatChart width libs = unlines $ legend ++ profile
         , "  " <> fmt [blue]   block <> "  Starting"
         , "  " <> fmt [red]    block <> "  Building"
         , "  " <> fmt [yellow] block <> "  Installing"
+        , "  Single block time size: " <> fmtNanos blockMeasure
         , ""
         ]
 
     profile :: [Text]
     profile =
-        [ b " Dependency compilation profile result:"
+        [ b "Dependency compilation profile result:"
         ] ++
         formattedEntries
 
@@ -157,48 +158,79 @@ formatChart width libs = unlines $ legend ++ profile
         $ sortOn (Down . phaseTotal . snd) entries
 
     formatRow :: Text -> Phase -> Text
-    formatRow libName Phase{..} = mconcat
-        [ fmtLib libName
-        , " "
-        , "│"
-        , " "
-        , formatPhase cyan   phaseDownloading
-        , formatPhase blue   phaseStarting
-        , formatPhase red    phaseBuilding
-        , formatPhase yellow phaseInstalling
+    formatRow libName phase@Phase{..} = mconcat
+        [ fmtPrefix libName phase
+        , formatSinglePhase cyan   phaseDownloading
+        , formatSinglePhase blue   phaseStarting
+        , formatSinglePhase red    phaseBuilding
+        , formatSinglePhase yellow phaseInstalling
         ]
 
     entries :: [(Text, Phase)]
     entries = Map.toList libs
 
-    libSize :: Int
-    libSize = List.maximum $ map (Text.length . fst) entries
+    libSize, phaseSize, prefixSize :: Int
+    libSize    = List.maximum $ map (Text.length . fst) entries
+    phaseSize  = List.maximum $ map (Text.length . fmtPhase . snd) entries
+    prefixSize = List.maximum $ map (Text.length . uncurry fmtPrefix) entries
 
     longestPhase :: Word64
     longestPhase = List.maximum $ map (phaseTotal . snd) entries
 
-    fmtLib :: Text -> Text
-    fmtLib = Text.justifyRight libSize ' '
+    fmtPhase :: Phase -> Text
+    fmtPhase = fmtNanos . phaseTotal
+
+    fmtPrefix :: Text -> Phase -> Text
+    fmtPrefix libName phase = mconcat
+        [ Text.justifyRight libSize ' ' libName
+        , " ["
+        , Text.justifyLeft phaseSize ' ' $ fmtPhase phase
+        , "] "
+        , "│"
+        , " "
+        ]
 
     -- How many nanoseconds each block represents?
     -- blocks take:
-    -- width minus lib-lenth
-    --       minus 3 extra separators
-    --       minus 2 right padding
+    -- width minus prefix size
     --       minus 4 for remainders of each phase
-    blockMeasure :: Int
-    blockMeasure = fromIntegral longestPhase `div` (width - libSize - 9)
+    blockMeasure :: Word64
+    blockMeasure = longestPhase `div` fromIntegral (width - prefixSize - 4)
 
-    formatPhase :: Text -> Word64 -> Text
-    formatPhase colour (fromIntegral -> phase)
+    formatSinglePhase :: Text -> Word64 -> Text
+    formatSinglePhase colour phase
         | phase == 0 = ""
         | otherwise  = fmt [colour] $ stimes blockCount block
       where
-        blockCount :: Int
+        blockCount :: Word64
         blockCount = blockRemainder + div phase blockMeasure
 
-        blockRemainder :: Int
+        blockRemainder :: Word64
         blockRemainder = if phase `mod` blockMeasure > 0 then 1 else 0
 
 fmt :: [Text] -> Text -> Text
 fmt = formatWith
+
+
+fmtNanos :: Word64 -> Text
+fmtNanos time
+    | time < ns  = "0ns"
+    | time < mcs = show nanos   <> "ns"
+    | time < ms  = show micros  <> "mcs"
+    | time < s   = show millis  <> "ms"
+    | time < m   = show seconds <> "s" <> show millis <> "ms"
+    | otherwise  = show minutes <> "m" <> show seconds <> "s"
+  where
+    ns, mcs, ms, s, m :: Word64
+    ns  = 1
+    mcs = 1000 * ns
+    ms  = 1000 * mcs
+    s   = 1000 * ms
+    m   = 60 * s
+
+    nanos :: Word64
+    nanos   = time `mod` mcs
+    micros  = (time `div` mcs) `mod` 1000
+    millis  = (time `div` ms)  `mod` 1000
+    seconds = (time `div` s)   `mod` 60
+    minutes = time `div` m

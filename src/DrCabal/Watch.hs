@@ -7,7 +7,7 @@ Implementation of the 'dr-cabal watch' command.
 -}
 
 module DrCabal.Watch
-    ( watch
+    ( runWatch
     ) where
 
 import Data.Aeson.Encode.Pretty (encodePretty)
@@ -21,8 +21,8 @@ import qualified Data.ByteString as ByteString
 import qualified Data.Text as Text
 
 
-watch :: WatchArgs -> IO ()
-watch WatchArgs{..} = do
+runWatch :: WatchArgs -> IO ()
+runWatch WatchArgs{..} = do
     putTextLn "Collecting stats... This operation may take a while..."
 
     cabalOutput <- readFromStdin
