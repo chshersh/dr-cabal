@@ -77,6 +77,7 @@ library
       DrCabal.Cli
       DrCabal.Model
       DrCabal.Profile
+      DrCabal.Watch
 
   build-depends:
     , aeson                ^>= 2.1

@@ -9,38 +9,65 @@ CLI parser for @dr-cabal@.
 -}
 
 module DrCabal.Cli
-    ( Args (..)
-    , readArgs
+    ( Command (..)
+    , readCommand
+
+    , WatchArgs (..)
+    , ProfileArgs (..)
     ) where
 
 import qualified Options.Applicative as Opt
 
-data Args = Args
-    { argsSaveLogs :: Maybe FilePath
-    , argsFromFile :: Maybe FilePath
+data Command
+    = Watch WatchArgs
+    | Profile ProfileArgs
+
+newtype WatchArgs = WatchArgs
+    { watchArgsOutput :: FilePath
     }
 
-readArgs :: IO Args
-readArgs = Opt.execParser opts
+newtype ProfileArgs = ProfileArgs
+    { profileArgsInput :: FilePath
+    }
+
+readCommand :: IO Command
+readCommand = Opt.execParser opts
   where
-    opts = Opt.info (Opt.helper <*> argsP) $ mconcat
+    opts = Opt.info (Opt.helper <*> commandP) $ mconcat
       [ Opt.fullDesc
       , Opt.progDesc "Profile cabal dependency build output"
       , Opt.header "dr-cabal - a CLI tool to treat cabal output"
       ]
 
-argsP :: Opt.Parser Args
-argsP = do
-    argsSaveLogs <- Opt.optional $ Opt.strOption $ mconcat
-        [ Opt.long "save-logs"
+-- | All possible commands.
+commandP :: Opt.Parser Command
+commandP = Opt.subparser $ mconcat
+    [ Opt.command "watch"
+          $ Opt.info (Opt.helper <*> watchP)
+          $ Opt.progDesc "Watch cabal output and save it"
+    , Opt.command "profile"
+          $ Opt.info (Opt.helper <*> profileP)
+          $ Opt.progDesc "Output pretty cabal profile results"
+    ]
+
+watchP :: Opt.Parser Command
+watchP = do
+    watchArgsOutput <- Opt.strOption $ mconcat
+        [ Opt.long "output"
+        , Opt.short 'o'
         , Opt.metavar "FILE_PATH"
-        , Opt.help "Save intermediate logs of cabal output to a JSON file"
+        , Opt.help "Save cabal output to a file in a JSON format"
         ]
 
-    argsFromFile <- Opt.optional $ Opt.strOption $ mconcat
-        [ Opt.long "from-file"
+    pure $ Watch WatchArgs{..}
+
+profileP :: Opt.Parser Command
+profileP = do
+    profileArgsInput <-  Opt.strOption $ mconcat
+        [ Opt.long "input"
+        , Opt.short 'i'
         , Opt.metavar "FILE_PATH"
-        , Opt.help "Profile cabal output from a file saved by --save-logs instead of stdin"
+        , Opt.help "Read profile input from a JSON file, created by 'dr-cabal watch'"
         ]
 
-    pure Args{..}
+    pure $ Profile ProfileArgs{..}

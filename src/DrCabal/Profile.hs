@@ -7,18 +7,46 @@ See README for more info
 -}
 
 module DrCabal.Profile
-    ( createProfileChart
+    ( profile
     ) where
 
 import Colourista.Pure (blue, cyan, formatWith, red, yellow)
-import Colourista.Short (b)
+import Colourista.Short (b, u)
+import Data.Aeson (eitherDecodeFileStrict')
+import System.Console.ANSI (getTerminalSize)
 
+import DrCabal.Cli (ProfileArgs (..))
 import DrCabal.Model (Entry (..), Status (..))
 
 import qualified Data.List as List
 import qualified Data.Map.Strict as Map
 import qualified Data.Text as Text
 
+
+profile :: ProfileArgs -> IO ()
+profile ProfileArgs{..} = do
+    terminalWidth <- getTerminalSize >>= \case
+        Just (_height, width) -> pure width
+        Nothing -> do
+            putText $ unlines
+                [ "Error getting the terminal width. If you see this error, open an issue"
+                , "in the 'dr-cabal' issue tracker and provide as many details as possible"
+                , ""
+                , "  * " <> u "https://github.com/chshersh/dr-cabal/issues/new"
+                ]
+            exitFailure
+
+    entries <- readFromFile profileArgsInput
+    let chart = createProfileChart terminalWidth entries
+    putTextLn chart
+
+readFromFile :: FilePath -> IO [Entry]
+readFromFile file = eitherDecodeFileStrict' file >>= \case
+    Left err -> do
+        putStrLn $ "Error parsing file: " <> file
+        putStrLn $ "    " <> err
+        exitFailure
+    Right entries -> pure entries
 
 createProfileChart :: Int -> [Entry] -> Text
 createProfileChart width l = case l of
