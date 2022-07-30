@@ -76,11 +76,14 @@ library
     DrCabal
       DrCabal.Cli
       DrCabal.Model
+      DrCabal.Profile
 
   build-depends:
     , aeson                ^>= 2.1
     , aeson-pretty         ^>= 0.8.9
+    , ansi-terminal        ^>= 0.11
     , bytestring           ^>= 0.11
+    , colourista           ^>= 0.1
     , optparse-applicative ^>= 0.17
 
 executable dr-cabal

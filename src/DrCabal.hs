@@ -10,13 +10,16 @@ module DrCabal
     ( main
     ) where
 
+import Colourista.Short (u)
 import Data.Aeson (eitherDecodeFileStrict')
 import Data.Aeson.Encode.Pretty (encodePretty)
 import GHC.Clock (getMonotonicTimeNSec)
+import System.Console.ANSI (hGetTerminalSize)
 import System.IO (isEOF)
 
 import DrCabal.Cli (Args (..), readArgs)
-import DrCabal.Model (Entry (..), Line (..), Status (..))
+import DrCabal.Model (Entry (..), Line (..))
+import DrCabal.Profile (createProfileChart)
 
 import qualified Data.ByteString as ByteString
 import qualified Data.ByteString.Char8 as BS8
@@ -28,11 +31,25 @@ main = readArgs >>= runDrCabal
 
 runDrCabal :: Args -> IO ()
 runDrCabal Args{..} = do
+    terminalWidth <- hGetTerminalSize stderr >>= \case
+        Just (_height, width) -> pure width
+        Nothing -> do
+            putText $ unlines
+                [ "Error getting the terminal width. If you see this error, open an issue"
+                , "in the 'dr-cabal' issue tracker and provide as many details as possible"
+                , ""
+                , "  * " <> u "https://github.com/chshersh/dr-cabal/issues/new"
+                ]
+            exitFailure
+
+    putTextLn "Collecting stats..."
+
     cabalOutput <- case argsFromFile of
         Nothing   -> readFromStdin argsSaveLogs
         Just file -> readFromFile file
 
-    pure ()
+    let chart = createProfileChart terminalWidth cabalOutput
+    putTextLn chart
 
 readFromStdin :: Maybe FilePath -> IO [Entry]
 readFromStdin mSaveLogsFile = go []
