@@ -1,12 +1,11 @@
 cabal-version:       3.0
-name:                depper
+name:                dr-cabal
 version:             0.0.0.0
 synopsis:            See README for more info
 description:
-    See README for more info.
-    See [README.md](https://github.com/chshersh/depper#depper) for more details.
-homepage:            https://github.com/chshersh/depper
-bug-reports:         https://github.com/chshersh/depper/issues
+    See [README.md](https://github.com/chshersh/dr-cabal#dr-cabal) for more details.
+homepage:            https://github.com/chshersh/dr-cabal
+bug-reports:         https://github.com/chshersh/dr-cabal/issues
 license:             MPL-2.0
 license-file:        LICENSE
 author:              Dmitrii Kovanikov
@@ -19,7 +18,7 @@ tested-with:         GHC == 9.2.3
 
 source-repository head
   type:                git
-  location:            https://github.com/chshersh/depper.git
+  location:            https://github.com/chshersh/dr-cabal.git
 
 common common-options
   build-depends:       base   ^>= 4.16
@@ -73,31 +72,35 @@ common common-options
 library
   import:              common-options
   hs-source-dirs:      src
-  exposed-modules:     Depper
+  exposed-modules:
+    DrCabal
+      DrCabal.Cli
+      DrCabal.Model
 
   build-depends:
-    , bytestring
-    , pretty-simple ^>= 4.1
-    , time ^>= 1.11
+    , aeson                ^>= 2.1
+    , aeson-pretty         ^>= 0.8.9
+    , bytestring           ^>= 0.11
+    , optparse-applicative ^>= 0.17
 
-executable depper
+executable dr-cabal
   import:              common-options
   hs-source-dirs:      app
 
   main-is:             Main.hs
 
-  build-depends:       depper
+  build-depends:       dr-cabal
 
   ghc-options:         -threaded
                        -rtsopts
                        -with-rtsopts=-N
 
-test-suite depper-test
+test-suite dr-cabal-test
   import:              common-options
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test
   main-is:             Spec.hs
-  build-depends:       depper
+  build-depends:       dr-cabal
   ghc-options:         -threaded
                        -rtsopts
                        -with-rtsopts=-N

@@ -1,1 +1,1 @@
-module Main (main) where import Depper (main)
+module Main (main) where import DrCabal (main)
