@@ -3,6 +3,7 @@ name:                dr-cabal
 version:             0.0.0.0
 synopsis:            See README for more info
 description:
+    CLI tool for profiling Haskell dependencies build times.
     See [README.md](https://github.com/chshersh/dr-cabal#dr-cabal) for more details.
 homepage:            https://github.com/chshersh/dr-cabal
 bug-reports:         https://github.com/chshersh/dr-cabal/issues

@@ -1,9 +1,12 @@
 {-# LANGUAGE ApplicativeDo #-}
 
 {- |
-Copyright: (c) 2022 Dmitrii Kovanikov
-SPDX-License-Identifier: MPL-2.0
-Maintainer: Dmitrii Kovanikov <kovanikov@gmail.com>
+Module                  : DrCabal.Cli
+Copyright               : (c) 2022 Dmitrii Kovanikov
+SPDX-License-Identifier : MPL-2.0
+Maintainer              : Dmitrii Kovanikov <kovanikov@gmail.com>
+Stability               : Experimental
+Portability             : Portable
 
 CLI parser for @dr-cabal@.
 -}

@@ -1,11 +1,15 @@
 {-# LANGUAGE NumericUnderscores #-}
 
 {- |
-Copyright: (c) 2022 Dmitrii Kovanikov
-SPDX-License-Identifier: MPL-2.0
-Maintainer: Dmitrii Kovanikov <kovanikov@gmail.com>
+Module                  : DrCabal.Watch
+Copyright               : (c) 2019 Alexander Gugel
+                          (c) 2022 Dmitrii Kovanikov
+SPDX-License-Identifier : MPL-2.0
+Maintainer              : Dmitrii Kovanikov <kovanikov@gmail.com>
+Stability               : Experimental
+Portability             : Portable
 
-Implementation of the 'dr-cabal watch' command.
+Implementation of the @dr-cabal watch@ command.
 -}
 
 module DrCabal.Watch

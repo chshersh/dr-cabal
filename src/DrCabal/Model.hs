@@ -1,11 +1,13 @@
 {- |
-Copyright: (c) 2022 Dmitrii Kovanikov
-SPDX-License-Identifier: MPL-2.0
-Maintainer: Dmitrii Kovanikov <kovanikov@gmail.com>
+Module                  : DrCabal.Model
+Copyright               : (c) 2022 Dmitrii Kovanikov
+SPDX-License-Identifier : MPL-2.0
+Maintainer              : Dmitrii Kovanikov <kovanikov@gmail.com>
+Stability               : Experimental
+Portability             : Portable
 
 Data types to model the domain of the @cabal@ output.
 -}
-
 
 module DrCabal.Model
     ( Line (..)
