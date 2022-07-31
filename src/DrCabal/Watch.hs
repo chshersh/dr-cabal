@@ -23,6 +23,7 @@ import System.IO (isEOF)
 import DrCabal.Cli (WatchArgs (..))
 import DrCabal.Model (Entry (..), Line (..))
 
+import qualified Colourista
 import qualified Data.ByteString as ByteString
 import qualified Data.Text as Text
 
@@ -108,13 +109,17 @@ watchWorker watchRef = go "Watching build output" (cycle spinnerFrames)
 
     go :: Text -> [Text] -> IO ()
     go _ [] = do
-        putTextLn $ "Panic! At the 'dr-cabal'! Impossible happened: list of frames is empty"
+        Colourista.errorMessage $
+            "Panic! At the 'dr-cabal'! Impossible happened: list of frames is empty"
         exitFailure
     go prevLine (frame : frames) = do
         command <- atomicModifyIORef' watchRef popAction
         case command of
             Greeting -> do
-                putTextLn "Watching cabal output..."
+                Colourista.formattedMessage
+                    [Colourista.blue, Colourista.bold]
+                    "Watching cabal output..."
+
                 go prevLine (frame : frames)
             WriteLine line -> do
                 resetLine

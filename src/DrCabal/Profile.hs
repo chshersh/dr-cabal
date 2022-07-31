@@ -11,13 +11,14 @@ module DrCabal.Profile
     ) where
 
 import Colourista.Pure (blue, cyan, formatWith, red, yellow)
-import Colourista.Short (b, u)
+import Colourista.Short (b, i, u)
 import Data.Aeson (eitherDecodeFileStrict')
 import System.Console.ANSI (getTerminalSize)
 
 import DrCabal.Cli (ProfileArgs (..))
 import DrCabal.Model (Entry (..), Status (..))
 
+import qualified Colourista
 import qualified Data.List as List
 import qualified Data.Map.Strict as Map
 import qualified Data.Text as Text
@@ -43,8 +44,8 @@ runProfile ProfileArgs{..} = do
 readFromFile :: FilePath -> IO [Entry]
 readFromFile file = eitherDecodeFileStrict' file >>= \case
     Left err -> do
-        putStrLn $ "Error parsing file: " <> file
-        putStrLn $ "    " <> err
+        Colourista.errorMessage $ "Error parsing file: " <> toText file
+        Colourista.redMessage   $ "      " <> toText err
         exitFailure
     Right entries -> pure entries
 
@@ -56,7 +57,8 @@ createProfileChart width l = case l of
         ]
     entries ->
         let start = List.minimum $ map entryStart entries in
-        formatChart width $ calculatePhases start $ groupEntries entries
+        let end   = List.maximum $ map entryStart entries in
+        formatChart start end width $ calculatePhases start $ groupEntries entries
 
 groupEntries :: [Entry] -> Map Text [(Status, Word64)]
 groupEntries = foldl' insert mempty
@@ -128,27 +130,37 @@ entriesToPhase start times = Phase
             Nothing -> ct `minusw` start
             Just it -> ct `minusw` it
 
-formatChart :: Int -> Map Text Phase -> Text
-formatChart width libs = unlines $ legend ++ profile
+formatChart :: Word64 -> Word64 -> Int -> Map Text Phase -> Text
+formatChart start end width libs = unlines $ concat $
+    [ legend
+    , summary
+    , profile
+    ]
   where
     block :: Text
     block = "▇"
 
     legend :: [Text]
     legend =
-        [ ""
-        , b "Legend"
+        [ b "Legend"
         , "  " <> fmt [cyan]   block <> "  Downloading"
         , "  " <> fmt [blue]   block <> "  Starting"
         , "  " <> fmt [red]    block <> "  Building"
         , "  " <> fmt [yellow] block <> "  Installing"
-        , "  Single block time size: " <> fmtNanos blockMeasure
+        , ""
+        ]
+
+    summary :: [Text]
+    summary =
+        [ b "Summary"
+        , i "  Total dependency build time" <> " : " <> fmtNanos (end - start)
+        , i "  Single block resolution    " <> " : " <> fmtNanos blockMeasure
         , ""
         ]
 
     profile :: [Text]
     profile =
-        [ b "Dependency compilation profile result:"
+        [ b "Profile"
         ] ++
         formattedEntries
 
@@ -218,8 +230,8 @@ fmtNanos time
     | time < mcs = show nanos   <> "ns"
     | time < ms  = show micros  <> "mcs"
     | time < s   = show millis  <> "ms"
-    | time < m   = show seconds <> "s" <> show millis <> "ms"
-    | otherwise  = show minutes <> "m" <> show seconds <> "s"
+    | time < m   = show seconds <> "s" <> emptyIfZero millis "ms"
+    | otherwise  = show minutes <> "m" <> emptyIfZero seconds "s"
   where
     ns, mcs, ms, s, m :: Word64
     ns  = 1
@@ -234,3 +246,7 @@ fmtNanos time
     millis  = (time `div` ms)  `mod` 1000
     seconds = (time `div` s)   `mod` 60
     minutes = time `div` m
+
+    emptyIfZero :: Word64 -> Text -> Text
+    emptyIfZero 0 _    = ""
+    emptyIfZero t unit = show t <> unit
