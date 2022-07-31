@@ -44,8 +44,11 @@ common common-options
     ghc-options:       -Wmissing-deriving-strategies
                        -fwrite-ide-info
                        -hiedir=.hie
-  if impl(ghc >= 8.10)
-    ghc-options:       -Wunused-packages
+
+  -- annoying warning about unused base
+  -- if impl(ghc >= 8.10)
+  --   ghc-options:       -Wunused-packages
+
   if impl(ghc >= 9.0)
     ghc-options:       -Winvalid-haddock
   if impl(ghc >= 9.2)
@@ -90,20 +93,7 @@ library
 executable dr-cabal
   import:              common-options
   hs-source-dirs:      app
-
   main-is:             Main.hs
-
-  build-depends:       dr-cabal
-
-  ghc-options:         -threaded
-                       -rtsopts
-                       -with-rtsopts=-N
-
-test-suite dr-cabal-test
-  import:              common-options
-  type:                exitcode-stdio-1.0
-  hs-source-dirs:      test
-  main-is:             Spec.hs
   build-depends:       dr-cabal
   ghc-options:         -threaded
                        -rtsopts
