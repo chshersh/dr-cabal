@@ -1,3 +1,5 @@
+{-# LANGUAGE NumericUnderscores #-}
+
 {- |
 Copyright: (c) 2022 Dmitrii Kovanikov
 SPDX-License-Identifier: MPL-2.0
@@ -10,8 +12,12 @@ module DrCabal.Watch
     ( runWatch
     ) where
 
+import Colourista.Short (b)
+import Control.Concurrent (threadDelay)
+import Control.Concurrent.Async (wait, withAsync)
 import Data.Aeson.Encode.Pretty (encodePretty)
 import GHC.Clock (getMonotonicTimeNSec)
+import System.Console.ANSI (clearLine, setCursorColumn)
 import System.IO (isEOF)
 
 import DrCabal.Cli (WatchArgs (..))
@@ -23,24 +29,28 @@ import qualified Data.Text as Text
 
 runWatch :: WatchArgs -> IO ()
 runWatch WatchArgs{..} = do
-    putTextLn "Collecting stats... This operation may take a while..."
+    watchRef <- newIORef [Start]
 
-    cabalOutput <- readFromStdin
-    writeFileLBS watchArgsOutput $ encodePretty cabalOutput
+    withAsync (watchWorker watchRef) $ \workerAsync -> do
+        readFromStdin watchRef watchArgsOutput
+        wait workerAsync
 
-    putTextLn $ "Cabal output cached in a file: " <> toText watchArgsOutput
-
-readFromStdin :: IO [Entry]
-readFromStdin = go []
+readFromStdin :: IORef [WatchAction] -> FilePath -> IO ()
+readFromStdin watchRef outputPath = go []
   where
-    go :: [Line] -> IO [Entry]
+    go :: [Line] -> IO ()
     go cabalOutput = do
         isEndOfInput <- isEOF
         if isEndOfInput
-        then pure $ linesToEntries cabalOutput
+        then do
+            pushAction watchRef $ End outputPath cabalOutput
         else do
             time <- getMonotonicTimeNSec
             line <- ByteString.getLine
+
+            -- output line to the watch worker for output redirection
+            pushAction watchRef $ Consume line
+
             go $ Line time line : cabalOutput
 
 linesToEntries :: [Line] -> [Entry]
@@ -62,3 +72,82 @@ parseLine Line{..} = do
         , entryStart   = lineTime
         , entryLibrary = library
         }
+
+data WatchAction
+    = Start
+    | Consume ByteString
+    | End FilePath [Line]
+
+-- | Add 'WatchAction' to end of the list
+pushAction :: IORef [WatchAction] -> WatchAction -> IO ()
+pushAction watchRef action =
+    atomicModifyIORef' watchRef $ \actions -> (actions ++ [action], ())
+
+data WorkerCommand
+    = Greeting
+    | WriteLine ByteString
+    | Wait
+    | Finish FilePath [Line]
+
+watchWorker :: IORef [WatchAction] -> IO ()
+watchWorker watchRef = go "Watching build output" (cycle spinnerFrames)
+  where
+    spinnerFrames :: [Text]
+    spinnerFrames =
+        [ "⠋"
+        , "⠙"
+        , "⠹"
+        , "⠸"
+        , "⠼"
+        , "⠴"
+        , "⠦"
+        , "⠧"
+        , "⠇"
+        , "⠏"
+        ]
+
+    go :: Text -> [Text] -> IO ()
+    go _ [] = do
+        putTextLn $ "Panic! At the 'dr-cabal'! Impossible happened: list of frames is empty"
+        exitFailure
+    go prevLine (frame : frames) = do
+        command <- atomicModifyIORef' watchRef popAction
+        case command of
+            Greeting -> do
+                putTextLn "Watching cabal output..."
+                go prevLine (frame : frames)
+            WriteLine line -> do
+                resetLine
+                let l = decodeUtf8 line
+                putText $ frame <> " " <> l
+                hFlush stdout
+                threadDelay 80_000  -- wait 80 ms to update spinner
+                go l frames
+            Wait -> do
+                resetLine
+                putText $ frame <> " " <> prevLine
+                hFlush stdout
+                threadDelay 80_000  -- wait 80 ms to update spinner
+                go prevLine frames
+            Finish outputPath lns -> do
+                writeFileLBS outputPath $ encodePretty $ linesToEntries lns
+                resetLine
+                putTextLn $ unlines
+                    [ b "Build finished successfully!"
+                    , ""
+                    , "To see the profiling output, run the following command:"
+                    , ""
+                    , "    dr-cabal profile --input=" <> toText outputPath
+                    ]
+
+    popAction :: [WatchAction] -> ([WatchAction], WorkerCommand)
+    popAction [] = ([], Wait)
+    popAction (x : xs) = case x of
+        Start        -> (xs, Greeting)
+        Consume l    -> (xs, WriteLine l)
+        End path lns -> ([], Finish path lns)
+
+    resetLine :: IO ()
+    resetLine = do
+        clearLine
+        setCursorColumn 0
