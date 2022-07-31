@@ -18,7 +18,12 @@ jobs:
         os: [ubuntu-latest, macOS-latest]
         cabal: ["3.6"]
         ghc:
+          - "9.0.2"
           - "9.2.3"
+
+        exclude:
+          - os: macOS-latest
+            ghc: 9.0.2
 
     steps:
     - uses: actions/checkout@v3

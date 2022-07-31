@@ -26,7 +26,7 @@ To start using `dr-cabal`, make sure you have the required version of
 installed:
 
 * [Cabal ⩾ 3.6.2.0](https://www.haskell.org/cabal/)
-* [GHC ⩾ 9.2](https://www.haskell.org/downloads/)
+* [GHC ⩾ 9.0.2](https://www.haskell.org/downloads/)
 
 ### Hackage
 
@@ -47,6 +47,7 @@ follow these steps:
     cabal install dr-cabal \
         --install-method=copy \
         --overwrite-policy=always \
+        --with-compiler=ghc-9.0.2
         --installdir=$HOME/.local/bin
 	```
 
