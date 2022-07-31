@@ -1,1362 +1,1392 @@
 [
     {
         "library": "base-orphans-0.8.6",
-        "startTime": 1122946922516437,
+        "startTime": 1151098698487758,
         "status": "Downloading"
     },
     {
         "library": "base-orphans-0.8.6",
-        "startTime": 1122947457048213,
+        "startTime": 1151098790284966,
         "status": "Downloaded"
     },
     {
         "library": "colour-2.3.6",
-        "startTime": 1122947457058884,
+        "startTime": 1151098790291226,
         "status": "Downloading"
     },
     {
         "library": "colour-2.3.6",
-        "startTime": 1122948092485740,
+        "startTime": 1151098863069255,
         "status": "Downloaded"
     },
     {
         "library": "generically-0.1",
-        "startTime": 1122948092494833,
+        "startTime": 1151098863074693,
         "status": "Downloading"
     },
     {
         "library": "generically-0.1",
-        "startTime": 1122948688640302,
+        "startTime": 1151098941481132,
         "status": "Downloaded"
     },
     {
         "library": "transformers-compat-0.7.2",
-        "startTime": 1122948688645678,
+        "startTime": 1151098941573949,
         "status": "Downloading"
     },
     {
         "library": "transformers-compat-0.7.2",
-        "startTime": 1122948780247983,
+        "startTime": 1151099015702710,
         "status": "Downloaded"
     },
     {
         "library": "vector-stream-0.1.0.0",
-        "startTime": 1122948780335295,
+        "startTime": 1151099015815985,
         "status": "Downloading"
     },
     {
         "library": "vector-stream-0.1.0.0",
-        "startTime": 1122949009690932,
+        "startTime": 1151099109770449,
         "status": "Downloaded"
     },
     {
         "library": "dlist-1.0",
-        "startTime": 1122949009703536,
+        "startTime": 1151099109813116,
         "status": "Downloading"
     },
     {
         "library": "dlist-1.0",
-        "startTime": 1122949823227083,
+        "startTime": 1151099189381386,
         "status": "Downloaded"
     },
     {
         "library": "th-abstraction-0.4.4.0",
-        "startTime": 1122949823234102,
+        "startTime": 1151099189388398,
         "status": "Downloading"
     },
     {
         "library": "th-abstraction-0.4.4.0",
-        "startTime": 1122950339212445,
+        "startTime": 1151099262597538,
         "status": "Downloaded"
     },
     {
         "library": "primitive-0.7.4.0",
-        "startTime": 1122950339221979,
+        "startTime": 1151099262609368,
         "status": "Downloading"
     },
     {
         "library": "primitive-0.7.4.0",
-        "startTime": 1122950433784319,
+        "startTime": 1151099335287846,
         "status": "Downloaded"
     },
     {
         "library": "splitmix-0.1.0.4",
-        "startTime": 1122950434165014,
+        "startTime": 1151099335337243,
         "status": "Downloading"
     },
     {
         "library": "splitmix-0.1.0.4",
-        "startTime": 1122950543267938,
+        "startTime": 1151099407030261,
         "status": "Downloaded"
     },
     {
         "library": "random-1.2.1.1",
-        "startTime": 1122950543698327,
+        "startTime": 1151099407123534,
         "status": "Downloading"
     },
     {
         "library": "random-1.2.1.1",
-        "startTime": 1122951375603556,
+        "startTime": 1151099477446174,
         "status": "Downloaded"
     },
     {
         "library": "tagged-0.8.6.1",
-        "startTime": 1122951375616501,
+        "startTime": 1151099477490137,
         "status": "Downloading"
     },
     {
         "library": "tagged-0.8.6.1",
-        "startTime": 1122951497075707,
+        "startTime": 1151099554493751,
         "status": "Downloaded"
     },
     {
         "library": "distributive-0.6.2.1",
-        "startTime": 1122951497170505,
+        "startTime": 1151099554587156,
         "status": "Downloading"
     },
     {
         "library": "distributive-0.6.2.1",
-        "startTime": 1122951585197719,
+        "startTime": 1151099619524069,
         "status": "Downloaded"
     },
     {
         "library": "base-compat-0.12.1",
-        "startTime": 1122951585306550,
+        "startTime": 1151099619633474,
         "status": "Downloading"
     },
     {
         "library": "base-compat-0.12.1",
-        "startTime": 1122951680251137,
+        "startTime": 1151099703591919,
         "status": "Downloaded"
     },
     {
         "library": "base-compat-batteries-0.12.1",
-        "startTime": 1122951680300819,
+        "startTime": 1151099703706707,
         "status": "Downloading"
     },
     {
         "library": "base-compat-0.12.1",
-        "startTime": 1122951768229902,
+        "startTime": 1151099781029117,
         "status": "Starting"
     },
     {
         "library": "base-compat-batteries-0.12.1",
-        "startTime": 1122951796555155,
+        "startTime": 1151099806354100,
         "status": "Downloaded"
     },
     {
         "library": "vector-0.13.0.0",
-        "startTime": 1122951796559317,
+        "startTime": 1151099806364801,
         "status": "Downloading"
     },
     {
         "library": "vector-0.13.0.0",
-        "startTime": 1122952277472565,
+        "startTime": 1151099910786142,
         "status": "Downloaded"
     },
     {
         "library": "indexed-traversable-0.1.2",
-        "startTime": 1122952277477535,
+        "startTime": 1151099910901979,
         "status": "Downloading"
     },
     {
         "library": "indexed-traversable-0.1.2",
-        "startTime": 1122952353039919,
+        "startTime": 1151099999561955,
         "status": "Downloaded"
     },
     {
         "library": "comonad-5.0.8",
-        "startTime": 1122952353044250,
+        "startTime": 1151099999578155,
         "status": "Downloading"
     },
     {
         "library": "comonad-5.0.8",
-        "startTime": 1122952421954435,
+        "startTime": 1151100081269872,
         "status": "Downloaded"
     },
     {
         "library": "bifunctors-5.5.12",
-        "startTime": 1122952421959349,
+        "startTime": 1151100081280495,
         "status": "Downloading"
-    },
-    {
-        "library": "base-compat-0.12.1",
-        "startTime": 1122952461800872,
-        "status": "Building"
     },
     {
         "library": "bifunctors-5.5.12",
-        "startTime": 1122952502541121,
+        "startTime": 1151100192995808,
         "status": "Downloaded"
     },
     {
         "library": "assoc-1.0.2",
-        "startTime": 1122952502546667,
+        "startTime": 1151100193090618,
         "status": "Downloading"
     },
     {
         "library": "assoc-1.0.2",
-        "startTime": 1122952585982645,
+        "startTime": 1151100274973132,
         "status": "Downloaded"
     },
     {
         "library": "integer-logarithms-1.0.3.1",
-        "startTime": 1122952586080206,
-        "status": "Downloading"
-    },
-    {
-        "library": "integer-logarithms-1.0.3.1",
-        "startTime": 1122952685087941,
-        "status": "Downloaded"
-    },
-    {
-        "library": "attoparsec-0.14.4",
-        "startTime": 1122952685117855,
-        "status": "Downloading"
-    },
-    {
-        "library": "attoparsec-0.14.4",
-        "startTime": 1122952831438586,
-        "status": "Downloaded"
-    },
-    {
-        "library": "hashable-1.4.0.2",
-        "startTime": 1122952831534879,
-        "status": "Downloading"
-    },
-    {
-        "library": "attoparsec-0.14.4",
-        "startTime": 1122952904199043,
-        "status": "Starting"
-    },
-    {
-        "library": "hashable-1.4.0.2",
-        "startTime": 1122953407640918,
-        "status": "Downloaded"
-    },
-    {
-        "library": "data-fix-0.3.2",
-        "startTime": 1122953407647453,
-        "status": "Downloading"
-    },
-    {
-        "library": "attoparsec-0.14.4",
-        "startTime": 1122953436785418,
-        "status": "Building"
-    },
-    {
-        "library": "data-fix-0.3.2",
-        "startTime": 1122954119819122,
-        "status": "Downloaded"
-    },
-    {
-        "library": "these-1.1.1.1",
-        "startTime": 1122954119825582,
-        "status": "Downloading"
-    },
-    {
-        "library": "these-1.1.1.1",
-        "startTime": 1122954336863981,
-        "status": "Downloaded"
-    },
-    {
-        "library": "time-compat-1.9.6.1",
-        "startTime": 1122954337042737,
-        "status": "Downloading"
-    },
-    {
-        "library": "time-compat-1.9.6.1",
-        "startTime": 1122955060992737,
-        "status": "Downloaded"
-    },
-    {
-        "library": "unordered-containers-0.2.19.1",
-        "startTime": 1122955060998532,
-        "status": "Downloading"
-    },
-    {
-        "library": "attoparsec-0.14.4",
-        "startTime": 1122955252061282,
-        "status": "Installing"
-    },
-    {
-        "library": "attoparsec-0.14.4",
-        "startTime": 1122955554476874,
-        "status": "Completed"
-    },
-    {
-        "library": "base-orphans-0.8.6",
-        "startTime": 1122955565549472,
-        "status": "Starting"
-    },
-    {
-        "library": "unordered-containers-0.2.19.1",
-        "startTime": 1122955600624812,
-        "status": "Downloaded"
-    },
-    {
-        "library": "relude-1.1.0.0",
-        "startTime": 1122955600755809,
+        "startTime": 1151100275079984,
         "status": "Downloading"
     },
     {
         "library": "base-compat-0.12.1",
-        "startTime": 1122956055280618,
+        "startTime": 1151100315744955,
+        "status": "Building"
+    },
+    {
+        "library": "integer-logarithms-1.0.3.1",
+        "startTime": 1151100358034840,
+        "status": "Downloaded"
+    },
+    {
+        "library": "attoparsec-0.14.4",
+        "startTime": 1151100358046688,
+        "status": "Downloading"
+    },
+    {
+        "library": "attoparsec-0.14.4",
+        "startTime": 1151100449491945,
+        "status": "Downloaded"
+    },
+    {
+        "library": "hashable-1.4.0.2",
+        "startTime": 1151100449600084,
+        "status": "Downloading"
+    },
+    {
+        "library": "attoparsec-0.14.4",
+        "startTime": 1151100538986761,
+        "status": "Starting"
+    },
+    {
+        "library": "hashable-1.4.0.2",
+        "startTime": 1151100570986581,
+        "status": "Downloaded"
+    },
+    {
+        "library": "async-2.2.4",
+        "startTime": 1151100570997006,
+        "status": "Downloading"
+    },
+    {
+        "library": "async-2.2.4",
+        "startTime": 1151100649620032,
+        "status": "Downloaded"
+    },
+    {
+        "library": "data-fix-0.3.2",
+        "startTime": 1151100649625571,
+        "status": "Downloading"
+    },
+    {
+        "library": "data-fix-0.3.2",
+        "startTime": 1151100742160680,
+        "status": "Downloaded"
+    },
+    {
+        "library": "these-1.1.1.1",
+        "startTime": 1151100742167348,
+        "status": "Downloading"
+    },
+    {
+        "library": "these-1.1.1.1",
+        "startTime": 1151100826923457,
+        "status": "Downloaded"
+    },
+    {
+        "library": "time-compat-1.9.6.1",
+        "startTime": 1151100826930171,
+        "status": "Downloading"
+    },
+    {
+        "library": "time-compat-1.9.6.1",
+        "startTime": 1151100960322402,
+        "status": "Downloaded"
+    },
+    {
+        "library": "unordered-containers-0.2.19.1",
+        "startTime": 1151100960369793,
+        "status": "Downloading"
+    },
+    {
+        "library": "unordered-containers-0.2.19.1",
+        "startTime": 1151101065204162,
+        "status": "Downloaded"
+    },
+    {
+        "library": "relude-1.1.0.0",
+        "startTime": 1151101065215177,
+        "status": "Downloading"
+    },
+    {
+        "library": "attoparsec-0.14.4",
+        "startTime": 1151101122859939,
+        "status": "Building"
+    },
+    {
+        "library": "relude-1.1.0.0",
+        "startTime": 1151101174460551,
+        "status": "Downloaded"
+    },
+    {
+        "library": "scientific-0.3.7.0",
+        "startTime": 1151101174467379,
+        "status": "Downloading"
+    },
+    {
+        "library": "scientific-0.3.7.0",
+        "startTime": 1151101306092294,
+        "status": "Downloaded"
+    },
+    {
+        "library": "strict-0.4.0.1",
+        "startTime": 1151101306099093,
+        "status": "Downloading"
+    },
+    {
+        "library": "strict-0.4.0.1",
+        "startTime": 1151101404083691,
+        "status": "Downloaded"
+    },
+    {
+        "library": "text-short-0.1.5",
+        "startTime": 1151101404097514,
+        "status": "Downloading"
+    },
+    {
+        "library": "text-short-0.1.5",
+        "startTime": 1151101500942299,
+        "status": "Downloaded"
+    },
+    {
+        "library": "uuid-types-1.0.5",
+        "startTime": 1151101504329445,
+        "status": "Downloading"
+    },
+    {
+        "library": "uuid-types-1.0.5",
+        "startTime": 1151101601016215,
+        "status": "Downloaded"
+    },
+    {
+        "library": "ansi-terminal-0.11.3",
+        "startTime": 1151101601187568,
+        "status": "Downloading"
+    },
+    {
+        "library": "ansi-terminal-0.11.3",
+        "startTime": 1151101690254941,
+        "status": "Downloaded"
+    },
+    {
+        "library": "ansi-wl-pprint-0.6.9",
+        "startTime": 1151101695413040,
+        "status": "Downloading"
+    },
+    {
+        "library": "ansi-wl-pprint-0.6.9",
+        "startTime": 1151101775830628,
+        "status": "Downloaded"
+    },
+    {
+        "library": "optparse-applicative-0.17.0.0",
+        "startTime": 1151101775837051,
+        "status": "Downloading"
+    },
+    {
+        "library": "optparse-applicative-0.17.0.0",
+        "startTime": 1151101870908362,
+        "status": "Downloaded"
+    },
+    {
+        "library": "StateVar-1.2.2",
+        "startTime": 1151101870914811,
+        "status": "Downloading"
+    },
+    {
+        "library": "StateVar-1.2.2",
+        "startTime": 1151101967923095,
+        "status": "Downloaded"
+    },
+    {
+        "library": "contravariant-1.5.5",
+        "startTime": 1151101968055038,
+        "status": "Downloading"
+    },
+    {
+        "library": "StateVar-1.2.2",
+        "startTime": 1151101970875538,
+        "status": "Starting"
+    },
+    {
+        "library": "contravariant-1.5.5",
+        "startTime": 1151102068266192,
+        "status": "Downloaded"
+    },
+    {
+        "library": "semigroupoids-5.3.7",
+        "startTime": 1151102068273397,
+        "status": "Downloading"
+    },
+    {
+        "library": "semigroupoids-5.3.7",
+        "startTime": 1151102170982585,
+        "status": "Downloaded"
+    },
+    {
+        "library": "QuickCheck-2.14.2",
+        "startTime": 1151102170994609,
+        "status": "Downloading"
+    },
+    {
+        "library": "QuickCheck-2.14.2",
+        "startTime": 1151102303684175,
+        "status": "Downloaded"
+    },
+    {
+        "library": "OneTuple-0.3.1",
+        "startTime": 1151102303692248,
+        "status": "Downloading"
+    },
+    {
+        "library": "OneTuple-0.3.1",
+        "startTime": 1151102422218867,
+        "status": "Downloaded"
+    },
+    {
+        "library": "indexed-traversable-instances-0.1.1",
+        "startTime": 1151102424110095,
+        "status": "Downloading"
+    },
+    {
+        "library": "OneTuple-0.3.1",
+        "startTime": 1151102451386632,
+        "status": "Starting"
+    },
+    {
+        "library": "indexed-traversable-instances-0.1.1",
+        "startTime": 1151102598982257,
+        "status": "Downloaded"
+    },
+    {
+        "library": "semialign-1.2.0.1",
+        "startTime": 1151102598989353,
+        "status": "Downloading"
+    },
+    {
+        "library": "StateVar-1.2.2",
+        "startTime": 1151102716349838,
+        "status": "Building"
+    },
+    {
+        "library": "semialign-1.2.0.1",
+        "startTime": 1151102728280469,
+        "status": "Downloaded"
+    },
+    {
+        "library": "witherable-0.4.2",
+        "startTime": 1151102728287025,
+        "status": "Downloading"
+    },
+    {
+        "library": "witherable-0.4.2",
+        "startTime": 1151102849955825,
+        "status": "Downloaded"
+    },
+    {
+        "library": "aeson-2.1.0.0",
+        "startTime": 1151102849963138,
+        "status": "Downloading"
+    },
+    {
+        "library": "aeson-2.1.0.0",
+        "startTime": 1151102996325224,
+        "status": "Downloaded"
+    },
+    {
+        "library": "aeson-pretty-0.8.9",
+        "startTime": 1151102996655242,
+        "status": "Downloading"
+    },
+    {
+        "library": "aeson-pretty-0.8.9",
+        "startTime": 1151103143550235,
+        "status": "Downloaded"
+    },
+    {
+        "library": "OneTuple-0.3.1",
+        "startTime": 1151103264142897,
+        "status": "Building"
+    },
+    {
+        "library": "attoparsec-0.14.4",
+        "startTime": 1151103327412267,
         "status": "Installing"
     },
     {
+        "library": "attoparsec-0.14.4",
+        "startTime": 1151103638469958,
+        "status": "Completed"
+    },
+    {
         "library": "base-orphans-0.8.6",
-        "startTime": 1122956069411378,
+        "startTime": 1151103653230376,
+        "status": "Starting"
+    },
+    {
+        "library": "StateVar-1.2.2",
+        "startTime": 1151103784268136,
+        "status": "Installing"
+    },
+    {
+        "library": "OneTuple-0.3.1",
+        "startTime": 1151103901508153,
+        "status": "Installing"
+    },
+    {
+        "library": "StateVar-1.2.2",
+        "startTime": 1151104038747026,
+        "status": "Completed"
+    },
+    {
+        "library": "colour-2.3.6",
+        "startTime": 1151104043404025,
+        "status": "Starting"
+    },
+    {
+        "library": "OneTuple-0.3.1",
+        "startTime": 1151104202970020,
+        "status": "Completed"
+    },
+    {
+        "library": "dlist-1.0",
+        "startTime": 1151104209728871,
+        "status": "Starting"
+    },
+    {
+        "library": "base-orphans-0.8.6",
+        "startTime": 1151104359016288,
         "status": "Building"
     },
     {
         "library": "base-compat-0.12.1",
-        "startTime": 1122956344845961,
-        "status": "Completed"
+        "startTime": 1151104659603601,
+        "status": "Installing"
     },
     {
         "library": "colour-2.3.6",
-        "startTime": 1122956380114698,
-        "status": "Starting"
-    },
-    {
-        "library": "relude-1.1.0.0",
-        "startTime": 1122956388632324,
-        "status": "Downloaded"
-    },
-    {
-        "library": "scientific-0.3.7.0",
-        "startTime": 1122956388641767,
-        "status": "Downloading"
-    },
-    {
-        "library": "base-orphans-0.8.6",
-        "startTime": 1122956443207805,
-        "status": "Installing"
-    },
-    {
-        "library": "base-orphans-0.8.6",
-        "startTime": 1122956628697903,
-        "status": "Completed"
-    },
-    {
-        "library": "dlist-1.0",
-        "startTime": 1122956633573031,
-        "status": "Starting"
-    },
-    {
-        "library": "colour-2.3.6",
-        "startTime": 1122956903841090,
+        "startTime": 1151104780849777,
         "status": "Building"
     },
     {
-        "library": "scientific-0.3.7.0",
-        "startTime": 1122956991943196,
-        "status": "Downloaded"
-    },
-    {
-        "library": "strict-0.4.0.1",
-        "startTime": 1122956991948675,
-        "status": "Downloading"
-    },
-    {
-        "library": "dlist-1.0",
-        "startTime": 1122957146757383,
-        "status": "Building"
-    },
-    {
-        "library": "strict-0.4.0.1",
-        "startTime": 1122957297465010,
-        "status": "Downloaded"
-    },
-    {
-        "library": "text-short-0.1.5",
-        "startTime": 1122957297470208,
-        "status": "Downloading"
-    },
-    {
-        "library": "text-short-0.1.5",
-        "startTime": 1122958124954191,
-        "status": "Downloaded"
-    },
-    {
-        "library": "uuid-types-1.0.5",
-        "startTime": 1122958124959888,
-        "status": "Downloading"
-    },
-    {
-        "library": "uuid-types-1.0.5",
-        "startTime": 1122958426014378,
-        "status": "Downloaded"
-    },
-    {
-        "library": "ansi-terminal-0.11.3",
-        "startTime": 1122958426138018,
-        "status": "Downloading"
-    },
-    {
-        "library": "ansi-terminal-0.11.3",
-        "startTime": 1122959043363275,
-        "status": "Downloaded"
-    },
-    {
-        "library": "ansi-wl-pprint-0.6.9",
-        "startTime": 1122959043369190,
-        "status": "Downloading"
-    },
-    {
-        "library": "ansi-wl-pprint-0.6.9",
-        "startTime": 1122959343619695,
-        "status": "Downloaded"
-    },
-    {
-        "library": "optparse-applicative-0.17.0.0",
-        "startTime": 1122959343759636,
-        "status": "Downloading"
-    },
-    {
-        "library": "dlist-1.0",
-        "startTime": 1122959419888450,
+        "library": "base-orphans-0.8.6",
+        "startTime": 1151104903091287,
         "status": "Installing"
     },
     {
         "library": "dlist-1.0",
-        "startTime": 1122959621224978,
+        "startTime": 1151104964965187,
+        "status": "Building"
+    },
+    {
+        "library": "base-compat-0.12.1",
+        "startTime": 1151105055613830,
         "status": "Completed"
     },
     {
         "library": "generically-0.1",
-        "startTime": 1122959623964245,
+        "startTime": 1151105102154638,
         "status": "Starting"
     },
     {
-        "library": "optparse-applicative-0.17.0.0",
-        "startTime": 1122959661423710,
-        "status": "Downloaded"
-    },
-    {
-        "library": "StateVar-1.2.2",
-        "startTime": 1122959661429311,
-        "status": "Downloading"
-    },
-    {
-        "library": "StateVar-1.2.2",
-        "startTime": 1122960167769774,
-        "status": "Downloaded"
-    },
-    {
-        "library": "contravariant-1.5.5",
-        "startTime": 1122960167775426,
-        "status": "Downloading"
-    },
-    {
-        "library": "generically-0.1",
-        "startTime": 1122960197637362,
-        "status": "Building"
-    },
-    {
-        "library": "StateVar-1.2.2",
-        "startTime": 1122960200098987,
-        "status": "Starting"
-    },
-    {
-        "library": "contravariant-1.5.5",
-        "startTime": 1122960471934653,
-        "status": "Downloaded"
-    },
-    {
-        "library": "semigroupoids-5.3.7",
-        "startTime": 1122960471940178,
-        "status": "Downloading"
-    },
-    {
-        "library": "StateVar-1.2.2",
-        "startTime": 1122960903619140,
-        "status": "Building"
-    },
-    {
-        "library": "generically-0.1",
-        "startTime": 1122961083105138,
-        "status": "Installing"
-    },
-    {
-        "library": "semigroupoids-5.3.7",
-        "startTime": 1122961094588721,
-        "status": "Downloaded"
-    },
-    {
-        "library": "QuickCheck-2.14.2",
-        "startTime": 1122961094595792,
-        "status": "Downloading"
-    },
-    {
-        "library": "generically-0.1",
-        "startTime": 1122961388659123,
+        "library": "base-orphans-0.8.6",
+        "startTime": 1151105215208386,
         "status": "Completed"
     },
     {
         "library": "hashable-1.4.0.2",
-        "startTime": 1122961396886959,
+        "startTime": 1151105224261063,
         "status": "Starting"
     },
     {
-        "library": "QuickCheck-2.14.2",
-        "startTime": 1122961661874796,
-        "status": "Downloaded"
-    },
-    {
-        "library": "OneTuple-0.3.1",
-        "startTime": 1122961661880887,
-        "status": "Downloading"
-    },
-    {
-        "library": "StateVar-1.2.2",
-        "startTime": 1122961847086259,
-        "status": "Installing"
+        "library": "generically-0.1",
+        "startTime": 1151105882684307,
+        "status": "Building"
     },
     {
         "library": "hashable-1.4.0.2",
-        "startTime": 1122962061279009,
+        "startTime": 1151106027189115,
         "status": "Building"
     },
     {
-        "library": "StateVar-1.2.2",
-        "startTime": 1122962089538311,
+        "library": "generically-0.1",
+        "startTime": 1151106867012662,
+        "status": "Installing"
+    },
+    {
+        "library": "generically-0.1",
+        "startTime": 1151107156823678,
         "status": "Completed"
     },
     {
         "library": "indexed-traversable-0.1.2",
-        "startTime": 1122962094394481,
+        "startTime": 1151107160266768,
         "status": "Starting"
-    },
-    {
-        "library": "OneTuple-0.3.1",
-        "startTime": 1122962112291585,
-        "status": "Downloaded"
-    },
-    {
-        "library": "indexed-traversable-instances-0.1.1",
-        "startTime": 1122962112298237,
-        "status": "Downloading"
-    },
-    {
-        "library": "OneTuple-0.3.1",
-        "startTime": 1122962132428016,
-        "status": "Starting"
-    },
-    {
-        "library": "colour-2.3.6",
-        "startTime": 1122962567971775,
-        "status": "Installing"
-    },
-    {
-        "library": "indexed-traversable-instances-0.1.1",
-        "startTime": 1122962724361503,
-        "status": "Downloaded"
-    },
-    {
-        "library": "semialign-1.2.0.1",
-        "startTime": 1122962724367646,
-        "status": "Downloading"
     },
     {
         "library": "indexed-traversable-0.1.2",
-        "startTime": 1122962889463126,
+        "startTime": 1151107909837786,
         "status": "Building"
     },
     {
-        "library": "colour-2.3.6",
-        "startTime": 1122962899613752,
+        "library": "dlist-1.0",
+        "startTime": 1151107979904265,
+        "status": "Installing"
+    },
+    {
+        "library": "dlist-1.0",
+        "startTime": 1151108259761525,
         "status": "Completed"
     },
     {
         "library": "integer-logarithms-1.0.3.1",
-        "startTime": 1122962903976008,
+        "startTime": 1151108265405600,
         "status": "Starting"
     },
     {
-        "library": "OneTuple-0.3.1",
-        "startTime": 1122963018969643,
+        "library": "integer-logarithms-1.0.3.1",
+        "startTime": 1151109070773054,
         "status": "Building"
-    },
-    {
-        "library": "semialign-1.2.0.1",
-        "startTime": 1122963285142413,
-        "status": "Downloaded"
-    },
-    {
-        "library": "witherable-0.4.2",
-        "startTime": 1122963285148115,
-        "status": "Downloading"
     },
     {
         "library": "integer-logarithms-1.0.3.1",
-        "startTime": 1122963779493941,
-        "status": "Building"
-    },
-    {
-        "library": "OneTuple-0.3.1",
-        "startTime": 1122963806278177,
+        "startTime": 1151110938675150,
         "status": "Installing"
     },
     {
-        "library": "OneTuple-0.3.1",
-        "startTime": 1122964113681150,
+        "library": "integer-logarithms-1.0.3.1",
+        "startTime": 1151111252313922,
         "status": "Completed"
     },
     {
         "library": "primitive-0.7.4.0",
-        "startTime": 1122964125989920,
+        "startTime": 1151111267160620,
         "status": "Starting"
     },
     {
-        "library": "witherable-0.4.2",
-        "startTime": 1122964167522354,
-        "status": "Downloaded"
+        "library": "hashable-1.4.0.2",
+        "startTime": 1151111364998724,
+        "status": "Installing"
     },
     {
-        "library": "aeson-2.1.0.0",
-        "startTime": 1122964167528776,
-        "status": "Downloading"
+        "library": "hashable-1.4.0.2",
+        "startTime": 1151111795165448,
+        "status": "Completed"
     },
     {
-        "library": "aeson-2.1.0.0",
-        "startTime": 1122964448490606,
-        "status": "Downloaded"
-    },
-    {
-        "library": "aeson-pretty-0.8.9",
-        "startTime": 1122964448496298,
-        "status": "Downloading"
-    },
-    {
-        "library": "aeson-pretty-0.8.9",
-        "startTime": 1122964875079578,
-        "status": "Downloaded"
+        "library": "splitmix-0.1.0.4",
+        "startTime": 1151111805667853,
+        "status": "Starting"
     },
     {
         "library": "primitive-0.7.4.0",
-        "startTime": 1122965042655580,
+        "startTime": 1151112212731091,
         "status": "Building"
     },
     {
-        "library": "integer-logarithms-1.0.3.1",
-        "startTime": 1122965643392353,
+        "library": "colour-2.3.6",
+        "startTime": 1151112282610642,
         "status": "Installing"
     },
     {
-        "library": "integer-logarithms-1.0.3.1",
-        "startTime": 1122965955591745,
-        "status": "Completed"
-    },
-    {
         "library": "splitmix-0.1.0.4",
-        "startTime": 1122965963356379,
-        "status": "Starting"
-    },
-    {
-        "library": "splitmix-0.1.0.4",
-        "startTime": 1122966829267511,
+        "startTime": 1151112572958074,
         "status": "Building"
     },
     {
-        "library": "hashable-1.4.0.2",
-        "startTime": 1122967595465036,
-        "status": "Installing"
-    },
-    {
-        "library": "hashable-1.4.0.2",
-        "startTime": 1122967923711469,
+        "library": "colour-2.3.6",
+        "startTime": 1151112600796698,
         "status": "Completed"
     },
     {
         "library": "tagged-0.8.6.1",
-        "startTime": 1122967931639846,
+        "startTime": 1151112604279848,
         "status": "Starting"
     },
     {
         "library": "tagged-0.8.6.1",
-        "startTime": 1122968727662136,
+        "startTime": 1151113379709589,
         "status": "Building"
     },
     {
         "library": "splitmix-0.1.0.4",
-        "startTime": 1122969483590338,
-        "status": "Installing"
-    },
-    {
-        "library": "splitmix-0.1.0.4",
-        "startTime": 1122969796575838,
-        "status": "Completed"
-    },
-    {
-        "library": "th-abstraction-0.4.4.0",
-        "startTime": 1122969802468897,
-        "status": "Starting"
-    },
-    {
-        "library": "indexed-traversable-0.1.2",
-        "startTime": 1122970065009290,
+        "startTime": 1151115387961984,
         "status": "Installing"
     },
     {
         "library": "indexed-traversable-0.1.2",
-        "startTime": 1122970380368197,
+        "startTime": 1151115594764762,
+        "status": "Installing"
+    },
+    {
+        "library": "splitmix-0.1.0.4",
+        "startTime": 1151115710537762,
+        "status": "Completed"
+    },
+    {
+        "library": "th-abstraction-0.4.4.0",
+        "startTime": 1151115719117258,
+        "status": "Starting"
+    },
+    {
+        "library": "indexed-traversable-0.1.2",
+        "startTime": 1151115930481184,
         "status": "Completed"
     },
     {
         "library": "transformers-compat-0.7.2",
-        "startTime": 1122970393661375,
+        "startTime": 1151115945778969,
         "status": "Starting"
     },
     {
         "library": "th-abstraction-0.4.4.0",
-        "startTime": 1122970578132261,
+        "startTime": 1151116626185625,
         "status": "Building"
     },
     {
         "library": "transformers-compat-0.7.2",
-        "startTime": 1122971180156356,
+        "startTime": 1151116792994375,
         "status": "Building"
     },
     {
         "library": "tagged-0.8.6.1",
-        "startTime": 1122971746584581,
+        "startTime": 1151117164302715,
         "status": "Installing"
     },
     {
         "library": "tagged-0.8.6.1",
-        "startTime": 1122972090232655,
+        "startTime": 1151117506472404,
         "status": "Completed"
     },
     {
         "library": "vector-stream-0.1.0.0",
-        "startTime": 1122972094922227,
+        "startTime": 1151117508190684,
         "status": "Starting"
     },
     {
         "library": "vector-stream-0.1.0.0",
-        "startTime": 1122972910677467,
+        "startTime": 1151118363909263,
         "status": "Building"
     },
     {
         "library": "transformers-compat-0.7.2",
-        "startTime": 1122976584315226,
+        "startTime": 1151122737482595,
         "status": "Installing"
     },
     {
         "library": "transformers-compat-0.7.2",
-        "startTime": 1122976909766138,
+        "startTime": 1151123217319248,
+        "status": "Completed"
+    },
+    {
+        "library": "contravariant-1.5.5",
+        "startTime": 1151123222071239,
+        "status": "Starting"
+    },
+    {
+        "library": "contravariant-1.5.5",
+        "startTime": 1151124369246021,
+        "status": "Building"
+    },
+    {
+        "library": "vector-stream-0.1.0.0",
+        "startTime": 1151127558303595,
+        "status": "Installing"
+    },
+    {
+        "library": "contravariant-1.5.5",
+        "startTime": 1151127808302670,
+        "status": "Installing"
+    },
+    {
+        "library": "th-abstraction-0.4.4.0",
+        "startTime": 1151127860606576,
+        "status": "Installing"
+    },
+    {
+        "library": "vector-stream-0.1.0.0",
+        "startTime": 1151127953920714,
         "status": "Completed"
     },
     {
         "library": "base-compat-batteries-0.12.1",
-        "startTime": 1122976988312670,
-        "status": "Starting"
-    },
-    {
-        "library": "base-compat-batteries-0.12.1",
-        "startTime": 1122977816319947,
-        "status": "Building"
-    },
-    {
-        "library": "th-abstraction-0.4.4.0",
-        "startTime": 1122980093821365,
-        "status": "Installing"
-    },
-    {
-        "library": "vector-stream-0.1.0.0",
-        "startTime": 1122980385620526,
-        "status": "Installing"
-    },
-    {
-        "library": "th-abstraction-0.4.4.0",
-        "startTime": 1122980462275603,
-        "status": "Completed"
-    },
-    {
-        "library": "contravariant-1.5.5",
-        "startTime": 1122980467409190,
-        "status": "Starting"
-    },
-    {
-        "library": "vector-stream-0.1.0.0",
-        "startTime": 1122980695134510,
-        "status": "Completed"
-    },
-    {
-        "library": "ansi-terminal-0.11.3",
-        "startTime": 1122980708134164,
+        "startTime": 1151128043411916,
         "status": "Starting"
     },
     {
         "library": "contravariant-1.5.5",
-        "startTime": 1122981256951911,
-        "status": "Building"
-    },
-    {
-        "library": "ansi-terminal-0.11.3",
-        "startTime": 1122981554136952,
-        "status": "Building"
-    },
-    {
-        "library": "primitive-0.7.4.0",
-        "startTime": 1122982047192536,
-        "status": "Installing"
-    },
-    {
-        "library": "primitive-0.7.4.0",
-        "startTime": 1122982414546048,
+        "startTime": 1151128200098612,
         "status": "Completed"
     },
     {
         "library": "unordered-containers-0.2.19.1",
-        "startTime": 1122982428519920,
+        "startTime": 1151128215426211,
         "status": "Starting"
     },
     {
-        "library": "base-compat-batteries-0.12.1",
-        "startTime": 1122982490590854,
-        "status": "Installing"
-    },
-    {
-        "library": "base-compat-batteries-0.12.1",
-        "startTime": 1122982977123928,
+        "library": "th-abstraction-0.4.4.0",
+        "startTime": 1151128352740218,
         "status": "Completed"
     },
     {
         "library": "time-compat-1.9.6.1",
-        "startTime": 1122983061530233,
+        "startTime": 1151128373487952,
         "status": "Starting"
+    },
+    {
+        "library": "base-compat-batteries-0.12.1",
+        "startTime": 1151129061168215,
+        "status": "Building"
     },
     {
         "library": "unordered-containers-0.2.19.1",
-        "startTime": 1122983282550511,
+        "startTime": 1151129280757222,
         "status": "Building"
     },
     {
         "library": "time-compat-1.9.6.1",
-        "startTime": 1122983927381946,
+        "startTime": 1151129412307144,
         "status": "Building"
     },
     {
-        "library": "contravariant-1.5.5",
-        "startTime": 1122984060021819,
+        "library": "primitive-0.7.4.0",
+        "startTime": 1151132177119877,
         "status": "Installing"
     },
     {
-        "library": "contravariant-1.5.5",
-        "startTime": 1122984476494973,
+        "library": "primitive-0.7.4.0",
+        "startTime": 1151132576359414,
         "status": "Completed"
     },
     {
-        "library": "text-short-0.1.5",
-        "startTime": 1122984482773193,
-        "status": "Starting"
-    },
-    {
-        "library": "text-short-0.1.5",
-        "startTime": 1122985448566089,
-        "status": "Building"
-    },
-    {
         "library": "time-compat-1.9.6.1",
-        "startTime": 1122987033075345,
+        "startTime": 1151132581552743,
         "status": "Installing"
     },
     {
+        "library": "text-short-0.1.5",
+        "startTime": 1151132587237132,
+        "status": "Starting"
+    },
+    {
         "library": "time-compat-1.9.6.1",
-        "startTime": 1122987441423204,
+        "startTime": 1151132963476345,
         "status": "Completed"
     },
     {
         "library": "data-fix-0.3.2",
-        "startTime": 1122987455151020,
+        "startTime": 1151132974835155,
+        "status": "Starting"
+    },
+    {
+        "library": "text-short-0.1.5",
+        "startTime": 1151133405329092,
+        "status": "Building"
+    },
+    {
+        "library": "data-fix-0.3.2",
+        "startTime": 1151133840352428,
+        "status": "Building"
+    },
+    {
+        "library": "base-compat-batteries-0.12.1",
+        "startTime": 1151134606359275,
+        "status": "Installing"
+    },
+    {
+        "library": "base-compat-batteries-0.12.1",
+        "startTime": 1151135322459423,
+        "status": "Completed"
+    },
+    {
+        "library": "async-2.2.4",
+        "startTime": 1151135377027874,
+        "status": "Starting"
+    },
+    {
+        "library": "async-2.2.4",
+        "startTime": 1151136272276320,
+        "status": "Building"
+    },
+    {
+        "library": "data-fix-0.3.2",
+        "startTime": 1151136515225196,
+        "status": "Installing"
+    },
+    {
+        "library": "data-fix-0.3.2",
+        "startTime": 1151136904603680,
+        "status": "Completed"
+    },
+    {
+        "library": "ansi-terminal-0.11.3",
+        "startTime": 1151136916071128,
         "status": "Starting"
     },
     {
         "library": "ansi-terminal-0.11.3",
-        "startTime": 1122987609308272,
+        "startTime": 1151137812316489,
+        "status": "Building"
+    },
+    {
+        "library": "text-short-0.1.5",
+        "startTime": 1151138920209370,
         "status": "Installing"
+    },
+    {
+        "library": "text-short-0.1.5",
+        "startTime": 1151139439859872,
+        "status": "Completed"
+    },
+    {
+        "library": "random-1.2.1.1",
+        "startTime": 1151139453499800,
+        "status": "Starting"
+    },
+    {
+        "library": "async-2.2.4",
+        "startTime": 1151139896931529,
+        "status": "Installing"
+    },
+    {
+        "library": "async-2.2.4",
+        "startTime": 1151140411127839,
+        "status": "Completed"
+    },
+    {
+        "library": "distributive-0.6.2.1",
+        "startTime": 1151140414805889,
+        "status": "Starting"
+    },
+    {
+        "library": "random-1.2.1.1",
+        "startTime": 1151140523792138,
+        "status": "Building"
+    },
+    {
+        "library": "distributive-0.6.2.1",
+        "startTime": 1151141572027695,
+        "status": "Building"
+    },
+    {
+        "library": "distributive-0.6.2.1",
+        "startTime": 1151143598920649,
+        "status": "Installing"
+    },
+    {
+        "library": "distributive-0.6.2.1",
+        "startTime": 1151144000105352,
+        "status": "Completed"
+    },
+    {
+        "library": "vector-0.13.0.0",
+        "startTime": 1151144022479192,
+        "status": "Starting"
     },
     {
         "library": "ansi-terminal-0.11.3",
-        "startTime": 1122988029318499,
-        "status": "Completed"
-    },
-    {
-        "library": "random-1.2.1.1",
-        "startTime": 1122988046486418,
-        "status": "Starting"
-    },
-    {
-        "library": "data-fix-0.3.2",
-        "startTime": 1122988230674008,
-        "status": "Building"
-    },
-    {
-        "library": "random-1.2.1.1",
-        "startTime": 1122988915252545,
-        "status": "Building"
-    },
-    {
-        "library": "data-fix-0.3.2",
-        "startTime": 1122990394824666,
+        "startTime": 1151144847264931,
         "status": "Installing"
-    },
-    {
-        "library": "text-short-0.1.5",
-        "startTime": 1122990542388839,
-        "status": "Installing"
-    },
-    {
-        "library": "data-fix-0.3.2",
-        "startTime": 1122990759233253,
-        "status": "Completed"
-    },
-    {
-        "library": "distributive-0.6.2.1",
-        "startTime": 1122990763753609,
-        "status": "Starting"
-    },
-    {
-        "library": "text-short-0.1.5",
-        "startTime": 1122990915630721,
-        "status": "Completed"
     },
     {
         "library": "vector-0.13.0.0",
-        "startTime": 1122990952182209,
-        "status": "Starting"
-    },
-    {
-        "library": "distributive-0.6.2.1",
-        "startTime": 1122992111027985,
+        "startTime": 1151145047233983,
         "status": "Building"
     },
     {
-        "library": "vector-0.13.0.0",
-        "startTime": 1122992348294960,
-        "status": "Building"
-    },
-    {
-        "library": "distributive-0.6.2.1",
-        "startTime": 1122994519615638,
-        "status": "Installing"
-    },
-    {
-        "library": "distributive-0.6.2.1",
-        "startTime": 1122994902144777,
+        "library": "ansi-terminal-0.11.3",
+        "startTime": 1151145256312833,
         "status": "Completed"
     },
     {
         "library": "scientific-0.3.7.0",
-        "startTime": 1122994909633000,
+        "startTime": 1151145263301745,
         "status": "Starting"
     },
     {
         "library": "scientific-0.3.7.0",
-        "startTime": 1122995765520897,
+        "startTime": 1151146190969034,
         "status": "Building"
     },
     {
         "library": "scientific-0.3.7.0",
-        "startTime": 1123005600208204,
+        "startTime": 1151156646249380,
         "status": "Installing"
     },
     {
         "library": "scientific-0.3.7.0",
-        "startTime": 1123006028879396,
+        "startTime": 1151157102554021,
+        "status": "Completed"
+    },
+    {
+        "library": "comonad-5.0.8",
+        "startTime": 1151157115519248,
+        "status": "Starting"
+    },
+    {
+        "library": "comonad-5.0.8",
+        "startTime": 1151158191454298,
+        "status": "Building"
+    },
+    {
+        "library": "comonad-5.0.8",
+        "startTime": 1151165105596701,
+        "status": "Installing"
+    },
+    {
+        "library": "comonad-5.0.8",
+        "startTime": 1151165718926196,
         "status": "Completed"
     },
     {
         "library": "colourista-0.1.0.1",
-        "startTime": 1123006039418706,
+        "startTime": 1151165729708338,
+        "status": "Starting"
+    },
+    {
+        "library": "unordered-containers-0.2.19.1",
+        "startTime": 1151166333606361,
+        "status": "Installing"
+    },
+    {
+        "library": "unordered-containers-0.2.19.1",
+        "startTime": 1151166831504381,
+        "status": "Completed"
+    },
+    {
+        "library": "ansi-wl-pprint-0.6.9",
+        "startTime": 1151166837224603,
         "status": "Starting"
     },
     {
         "library": "colourista-0.1.0.1",
-        "startTime": 1123007009687185,
+        "startTime": 1151167052512916,
         "status": "Building"
     },
     {
-        "library": "colourista-0.1.0.1",
-        "startTime": 1123016207538423,
+        "library": "ansi-wl-pprint-0.6.9",
+        "startTime": 1151168123575247,
+        "status": "Building"
+    },
+    {
+        "library": "ansi-wl-pprint-0.6.9",
+        "startTime": 1151170976261324,
         "status": "Installing"
     },
     {
         "library": "random-1.2.1.1",
-        "startTime": 1123016379469801,
+        "startTime": 1151171170852077,
         "status": "Installing"
     },
     {
-        "library": "colourista-0.1.0.1",
-        "startTime": 1123016746292590,
+        "library": "ansi-wl-pprint-0.6.9",
+        "startTime": 1151171533273170,
         "status": "Completed"
     },
     {
-        "library": "ansi-wl-pprint-0.6.9",
-        "startTime": 1123016751267285,
+        "library": "attoparsec-0.14.4",
+        "startTime": 1151171591360414,
         "status": "Starting"
     },
     {
         "library": "random-1.2.1.1",
-        "startTime": 1123016928315213,
-        "status": "Completed"
-    },
-    {
-        "library": "comonad-5.0.8",
-        "startTime": 1123016946752255,
-        "status": "Starting"
-    },
-    {
-        "library": "ansi-wl-pprint-0.6.9",
-        "startTime": 1123017886941035,
-        "status": "Building"
-    },
-    {
-        "library": "unordered-containers-0.2.19.1",
-        "startTime": 1123018196310668,
-        "status": "Installing"
-    },
-    {
-        "library": "comonad-5.0.8",
-        "startTime": 1123018229357931,
-        "status": "Building"
-    },
-    {
-        "library": "unordered-containers-0.2.19.1",
-        "startTime": 1123018691296224,
-        "status": "Completed"
-    },
-    {
-        "library": "attoparsec-0.14.4",
-        "startTime": 1123018720034362,
-        "status": "Starting"
-    },
-    {
-        "library": "attoparsec-0.14.4",
-        "startTime": 1123019816118486,
-        "status": "Building"
-    },
-    {
-        "library": "ansi-wl-pprint-0.6.9",
-        "startTime": 1123020354596863,
-        "status": "Installing"
-    },
-    {
-        "library": "ansi-wl-pprint-0.6.9",
-        "startTime": 1123020757386209,
-        "status": "Completed"
-    },
-    {
-        "library": "uuid-types-1.0.5",
-        "startTime": 1123020763566263,
-        "status": "Starting"
-    },
-    {
-        "library": "uuid-types-1.0.5",
-        "startTime": 1123021753123496,
-        "status": "Building"
-    },
-    {
-        "library": "comonad-5.0.8",
-        "startTime": 1123023403829115,
-        "status": "Installing"
-    },
-    {
-        "library": "comonad-5.0.8",
-        "startTime": 1123023873426233,
-        "status": "Completed"
-    },
-    {
-        "library": "QuickCheck-2.14.2",
-        "startTime": 1123023894318469,
-        "status": "Starting"
-    },
-    {
-        "library": "QuickCheck-2.14.2",
-        "startTime": 1123025064173170,
-        "status": "Building"
-    },
-    {
-        "library": "uuid-types-1.0.5",
-        "startTime": 1123026729109548,
-        "status": "Installing"
-    },
-    {
-        "library": "uuid-types-1.0.5",
-        "startTime": 1123027377388728,
-        "status": "Completed"
-    },
-    {
-        "library": "relude-1.1.0.0",
-        "startTime": 1123027409010443,
-        "status": "Starting"
-    },
-    {
-        "library": "relude-1.1.0.0",
-        "startTime": 1123028652822640,
-        "status": "Building"
-    },
-    {
-        "library": "relude-1.1.0.0",
-        "startTime": 1123038338708186,
-        "status": "Installing"
-    },
-    {
-        "library": "relude-1.1.0.0",
-        "startTime": 1123038801232487,
-        "status": "Completed"
-    },
-    {
-        "library": "optparse-applicative-0.17.0.0",
-        "startTime": 1123038831687385,
-        "status": "Starting"
-    },
-    {
-        "library": "optparse-applicative-0.17.0.0",
-        "startTime": 1123039770612624,
-        "status": "Building"
-    },
-    {
-        "library": "optparse-applicative-0.17.0.0",
-        "startTime": 1123054725770351,
-        "status": "Installing"
-    },
-    {
-        "library": "optparse-applicative-0.17.0.0",
-        "startTime": 1123055288409292,
+        "startTime": 1151171813928143,
         "status": "Completed"
     },
     {
         "library": "bifunctors-5.5.12",
-        "startTime": 1123055314294445,
+        "startTime": 1151171850627780,
         "status": "Starting"
     },
     {
+        "library": "attoparsec-0.14.4",
+        "startTime": 1151172823558649,
+        "status": "Building"
+    },
+    {
         "library": "bifunctors-5.5.12",
-        "startTime": 1123056306589344,
+        "startTime": 1151173008721846,
+        "status": "Building"
+    },
+    {
+        "library": "colourista-0.1.0.1",
+        "startTime": 1151175579796509,
+        "status": "Installing"
+    },
+    {
+        "library": "colourista-0.1.0.1",
+        "startTime": 1151175997734202,
+        "status": "Completed"
+    },
+    {
+        "library": "relude-1.1.0.0",
+        "startTime": 1151176025014406,
+        "status": "Starting"
+    },
+    {
+        "library": "relude-1.1.0.0",
+        "startTime": 1151176972512538,
+        "status": "Building"
+    },
+    {
+        "library": "relude-1.1.0.0",
+        "startTime": 1151186897522831,
+        "status": "Installing"
+    },
+    {
+        "library": "relude-1.1.0.0",
+        "startTime": 1151187365564654,
+        "status": "Completed"
+    },
+    {
+        "library": "optparse-applicative-0.17.0.0",
+        "startTime": 1151187400092631,
+        "status": "Starting"
+    },
+    {
+        "library": "optparse-applicative-0.17.0.0",
+        "startTime": 1151188369034696,
+        "status": "Building"
+    },
+    {
+        "library": "bifunctors-5.5.12",
+        "startTime": 1151195006455776,
+        "status": "Installing"
+    },
+    {
+        "library": "bifunctors-5.5.12",
+        "startTime": 1151195472291522,
+        "status": "Completed"
+    },
+    {
+        "library": "uuid-types-1.0.5",
+        "startTime": 1151195482842051,
+        "status": "Starting"
+    },
+    {
+        "library": "uuid-types-1.0.5",
+        "startTime": 1151196449113768,
+        "status": "Building"
+    },
+    {
+        "library": "uuid-types-1.0.5",
+        "startTime": 1151200964398406,
+        "status": "Installing"
+    },
+    {
+        "library": "uuid-types-1.0.5",
+        "startTime": 1151201473537989,
+        "status": "Completed"
+    },
+    {
+        "library": "QuickCheck-2.14.2",
+        "startTime": 1151201486078691,
+        "status": "Starting"
+    },
+    {
+        "library": "optparse-applicative-0.17.0.0",
+        "startTime": 1151201569203765,
+        "status": "Installing"
+    },
+    {
+        "library": "optparse-applicative-0.17.0.0",
+        "startTime": 1151202032307584,
+        "status": "Completed"
+    },
+    {
+        "library": "semigroupoids-5.3.7",
+        "startTime": 1151202048487821,
+        "status": "Starting"
+    },
+    {
+        "library": "QuickCheck-2.14.2",
+        "startTime": 1151202523768245,
+        "status": "Building"
+    },
+    {
+        "library": "semigroupoids-5.3.7",
+        "startTime": 1151203078161047,
+        "status": "Building"
+    },
+    {
+        "library": "semigroupoids-5.3.7",
+        "startTime": 1151221513211229,
+        "status": "Installing"
+    },
+    {
+        "library": "semigroupoids-5.3.7",
+        "startTime": 1151222069674431,
+        "status": "Completed"
+    },
+    {
+        "library": "assoc-1.0.2",
+        "startTime": 1151222081728906,
+        "status": "Starting"
+    },
+    {
+        "library": "assoc-1.0.2",
+        "startTime": 1151223199121370,
+        "status": "Building"
+    },
+    {
+        "library": "assoc-1.0.2",
+        "startTime": 1151224194210849,
+        "status": "Installing"
+    },
+    {
+        "library": "assoc-1.0.2",
+        "startTime": 1151224711594870,
+        "status": "Completed"
+    },
+    {
+        "library": "these-1.1.1.1",
+        "startTime": 1151224714865533,
+        "status": "Starting"
+    },
+    {
+        "library": "these-1.1.1.1",
+        "startTime": 1151225932914998,
+        "status": "Building"
+    },
+    {
+        "library": "attoparsec-0.14.4",
+        "startTime": 1151230938804518,
+        "status": "Installing"
+    },
+    {
+        "library": "attoparsec-0.14.4",
+        "startTime": 1151231495267113,
+        "status": "Completed"
+    },
+    {
+        "library": "these-1.1.1.1",
+        "startTime": 1151232780213099,
+        "status": "Installing"
+    },
+    {
+        "library": "these-1.1.1.1",
+        "startTime": 1151233165919952,
+        "status": "Completed"
+    },
+    {
+        "library": "strict-0.4.0.1",
+        "startTime": 1151233172365630,
+        "status": "Starting"
+    },
+    {
+        "library": "strict-0.4.0.1",
+        "startTime": 1151234068060856,
         "status": "Building"
     },
     {
         "library": "QuickCheck-2.14.2",
-        "startTime": 1123060288391683,
+        "startTime": 1151236270147839,
         "status": "Installing"
     },
     {
         "library": "QuickCheck-2.14.2",
-        "startTime": 1123060832308919,
-        "status": "Completed"
-    },
-    {
-        "library": "attoparsec-0.14.4",
-        "startTime": 1123075240316074,
-        "status": "Installing"
-    },
-    {
-        "library": "attoparsec-0.14.4",
-        "startTime": 1123075892761339,
-        "status": "Completed"
-    },
-    {
-        "library": "bifunctors-5.5.12",
-        "startTime": 1123077341922353,
-        "status": "Installing"
-    },
-    {
-        "library": "bifunctors-5.5.12",
-        "startTime": 1123077646445105,
-        "status": "Completed"
-    },
-    {
-        "library": "assoc-1.0.2",
-        "startTime": 1123077654702362,
-        "status": "Starting"
-    },
-    {
-        "library": "semigroupoids-5.3.7",
-        "startTime": 1123077666744322,
-        "status": "Starting"
-    },
-    {
-        "library": "semigroupoids-5.3.7",
-        "startTime": 1123078434929640,
-        "status": "Building"
-    },
-    {
-        "library": "assoc-1.0.2",
-        "startTime": 1123078480367905,
-        "status": "Building"
-    },
-    {
-        "library": "assoc-1.0.2",
-        "startTime": 1123079635183169,
-        "status": "Installing"
-    },
-    {
-        "library": "assoc-1.0.2",
-        "startTime": 1123079996825572,
-        "status": "Completed"
-    },
-    {
-        "library": "these-1.1.1.1",
-        "startTime": 1123080003091612,
-        "status": "Starting"
-    },
-    {
-        "library": "these-1.1.1.1",
-        "startTime": 1123080839938561,
-        "status": "Building"
-    },
-    {
-        "library": "these-1.1.1.1",
-        "startTime": 1123086073278030,
-        "status": "Installing"
-    },
-    {
-        "library": "these-1.1.1.1",
-        "startTime": 1123086526316391,
+        "startTime": 1151236691497709,
         "status": "Completed"
     },
     {
         "library": "strict-0.4.0.1",
-        "startTime": 1123086532842571,
-        "status": "Starting"
-    },
-    {
-        "library": "strict-0.4.0.1",
-        "startTime": 1123087317659254,
-        "status": "Building"
-    },
-    {
-        "library": "semigroupoids-5.3.7",
-        "startTime": 1123094181545397,
-        "status": "Installing"
-    },
-    {
-        "library": "semigroupoids-5.3.7",
-        "startTime": 1123094612631227,
-        "status": "Completed"
-    },
-    {
-        "library": "strict-0.4.0.1",
-        "startTime": 1123095341295560,
+        "startTime": 1151240361941954,
         "status": "Installing"
     },
     {
         "library": "strict-0.4.0.1",
-        "startTime": 1123095639783571,
+        "startTime": 1151240632897595,
         "status": "Completed"
     },
     {
         "library": "vector-0.13.0.0",
-        "startTime": 1123153205642924,
+        "startTime": 1151314541653269,
         "status": "Installing"
     },
     {
         "library": "vector-0.13.0.0",
-        "startTime": 1123153481069753,
+        "startTime": 1151314807211602,
         "status": "Completed"
     },
     {
         "library": "indexed-traversable-instances-0.1.1",
-        "startTime": 1123153493585529,
+        "startTime": 1151314819285687,
         "status": "Starting"
     },
     {
         "library": "indexed-traversable-instances-0.1.1",
-        "startTime": 1123154046869870,
+        "startTime": 1151315372991371,
         "status": "Building"
     },
     {
         "library": "indexed-traversable-instances-0.1.1",
-        "startTime": 1123155410142857,
+        "startTime": 1151316706015056,
         "status": "Installing"
     },
     {
         "library": "indexed-traversable-instances-0.1.1",
-        "startTime": 1123155643270311,
-        "status": "Completed"
-    },
-    {
-        "library": "semialign-1.2.0.1",
-        "startTime": 1123155648386211,
-        "status": "Starting"
-    },
-    {
-        "library": "witherable-0.4.2",
-        "startTime": 1123155650356185,
-        "status": "Starting"
-    },
-    {
-        "library": "semialign-1.2.0.1",
-        "startTime": 1123156253249559,
-        "status": "Building"
-    },
-    {
-        "library": "witherable-0.4.2",
-        "startTime": 1123156278740324,
-        "status": "Building"
-    },
-    {
-        "library": "semialign-1.2.0.1",
-        "startTime": 1123162626154135,
-        "status": "Installing"
-    },
-    {
-        "library": "semialign-1.2.0.1",
-        "startTime": 1123162884936853,
+        "startTime": 1151316946183059,
         "status": "Completed"
     },
     {
         "library": "witherable-0.4.2",
-        "startTime": 1123162891363555,
+        "startTime": 1151316950326912,
+        "status": "Starting"
+    },
+    {
+        "library": "semialign-1.2.0.1",
+        "startTime": 1151316952333198,
+        "status": "Starting"
+    },
+    {
+        "library": "witherable-0.4.2",
+        "startTime": 1151317614199694,
+        "status": "Building"
+    },
+    {
+        "library": "semialign-1.2.0.1",
+        "startTime": 1151317625891020,
+        "status": "Building"
+    },
+    {
+        "library": "semialign-1.2.0.1",
+        "startTime": 1151323888811144,
+        "status": "Installing"
+    },
+    {
+        "library": "semialign-1.2.0.1",
+        "startTime": 1151324146303268,
+        "status": "Completed"
+    },
+    {
+        "library": "witherable-0.4.2",
+        "startTime": 1151324176986478,
         "status": "Installing"
     },
     {
         "library": "witherable-0.4.2",
-        "startTime": 1123163124624642,
+        "startTime": 1151324391623672,
         "status": "Completed"
     },
     {
         "library": "aeson-2.1.0.0",
-        "startTime": 1123163188500122,
+        "startTime": 1151324454005018,
         "status": "Starting"
     },
     {
         "library": "aeson-2.1.0.0",
-        "startTime": 1123163732483538,
+        "startTime": 1151325008094936,
         "status": "Building"
     },
     {
         "library": "aeson-2.1.0.0",
-        "startTime": 1123244635847871,
+        "startTime": 1151402771249598,
         "status": "Installing"
     },
     {
         "library": "aeson-2.1.0.0",
-        "startTime": 1123244929029007,
+        "startTime": 1151403065932582,
         "status": "Completed"
     },
     {
         "library": "aeson-pretty-0.8.9",
-        "startTime": 1123244949091649,
+        "startTime": 1151403086197703,
         "status": "Starting"
     },
     {
         "library": "aeson-pretty-0.8.9",
-        "startTime": 1123245492614659,
+        "startTime": 1151403629727493,
         "status": "Building"
     },
     {
         "library": "aeson-pretty-0.8.9",
-        "startTime": 1123246915946231,
+        "startTime": 1151405042756835,
         "status": "Installing"
     },
     {
         "library": "aeson-pretty-0.8.9",
-        "startTime": 1123247173335720,
+        "startTime": 1151405290814997,
         "status": "Completed"
     }
 ]
