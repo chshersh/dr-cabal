@@ -17,13 +17,14 @@ build-type:          Simple
 extra-doc-files:     README.md
                      CHANGELOG.md
 tested-with:         GHC == 9.2.3
+                     GHC == 9.0.2
 
 source-repository head
   type:                git
   location:            https://github.com/chshersh/dr-cabal.git
 
 common common-options
-  build-depends:       base   ^>= 4.16
+  build-depends:       base    >= 4.15 && < 4.17
                      , relude ^>= 1.1
 
   mixins:              base hiding (Prelude)
