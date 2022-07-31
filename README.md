@@ -47,7 +47,7 @@ follow these steps:
     cabal install dr-cabal \
         --install-method=copy \
         --overwrite-policy=always \
-        --with-compiler=ghc-9.0.2
+        --with-compiler=ghc-9.0.2 \
         --installdir=$HOME/.local/bin
 	```
 
