@@ -12,6 +12,7 @@ license-file:        LICENSE
 author:              Dmitrii Kovanikov
 maintainer:          Dmitrii Kovanikov <kovanikov@gmail.com>
 copyright:           2022 Dmitrii Kovanikov
+category:            Profiling,Development
 build-type:          Simple
 extra-doc-files:     README.md
                      CHANGELOG.md

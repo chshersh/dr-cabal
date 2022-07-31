@@ -6,7 +6,7 @@
 
 `dr-cabal` is a CLI tool for profiling Haskell dependencies build times.
 
-![dr-cabal example](https://github.com/chshersh/dr-cabal/blob/main/images/dr-cabal-example.png)
+![dr-cabal example](https://raw.githubusercontent.com/chshersh/dr-cabal/main/images/dr-cabal-example.png)
 
 > ℹ️ **DISCLAIMER:** This project is developed and maintained in
 > free time by volunteers. The development may continue for decades or
@@ -120,7 +120,7 @@ relevant steps in the `dr-cabal-debug.json` file.
 
 If everything is good, you should see output similar to the below one:
 
-![dr-cabal watch example](https://github.com/chshersh/dr-cabal/blob/main/images/dr-cabal-watch.gif)
+![dr-cabal watch example](https://raw.githubusercontent.com/chshersh/dr-cabal/main/images/dr-cabal-watch.gif)
 
 ### Profile
 
@@ -135,4 +135,4 @@ cabal profile --input=dr-cabal-debug.json
 
 You'll see the output like on the image below:
 
-![dr-cabal bigger example](https://github.com/chshersh/dr-cabal/blob/main/images/dr-cabal-itself.png)
+![dr-cabal bigger example](https://raw.githubusercontent.com/chshersh/dr-cabal/main/images/dr-cabal-itself.png)
