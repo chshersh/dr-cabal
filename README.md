@@ -123,6 +123,12 @@ If everything is good, you should see output similar to the below one:
 
 ![dr-cabal watch example](https://raw.githubusercontent.com/chshersh/dr-cabal/main/images/dr-cabal-watch.gif)
 
+> It's also possible to see the time spent on Haddock. You can run with:
+>
+> ```shell
+> cabal build all --enable-documentation --haddock-all | dr-cabal watch --output=dr-cabal-debug.json
+> ```
+
 ### Profile
 
 Once you successfully produced a JSON file with all the recorded

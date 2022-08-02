@@ -13,7 +13,7 @@ module DrCabal.Profile
     ( runProfile
     ) where
 
-import Colourista.Pure (blue, cyan, formatWith, red, yellow)
+import Colourista.Pure (blue, cyan, formatWith, red, yellow, magenta)
 import Colourista.Short (b, i, u)
 import Data.Aeson (eitherDecodeFileStrict')
 import System.Console.ANSI (getTerminalSize)
@@ -77,11 +77,12 @@ data Phase = Phase
     { phaseDownloading :: Word64
     , phaseStarting    :: Word64
     , phaseBuilding    :: Word64
+    , phaseHaddock     :: Word64
     , phaseInstalling  :: Word64
     }
 
 phaseTotal :: Phase -> Word64
-phaseTotal (Phase p1 p2 p3 p4) = p1 + p2 + p3 + p4
+phaseTotal (Phase p1 p2 p3 p4 p5) = p1 + p2 + p3 + p4 + p5
 
 calculatePhases :: Word64 -> Map Text [(Status, Word64)] -> Map Text Phase
 calculatePhases start = fmap (entriesToPhase start)
@@ -91,14 +92,16 @@ entriesToPhase start times = Phase
     { phaseDownloading = calcDownloading
     , phaseStarting    = calcStarting
     , phaseBuilding    = calcBuilding
+    , phaseHaddock     = calcHaddock
     , phaseInstalling  = calcInstalling
     }
   where
-    downloading, downloaded, starting, building, installing, completed :: Maybe Word64
+    downloading, downloaded, starting, building, haddock, installing, completed :: Maybe Word64
     downloading = List.lookup Downloading times
     downloaded  = List.lookup Downloaded  times
     starting    = List.lookup Starting    times
     building    = List.lookup Building    times
+    haddock     = List.lookup Haddock     times
     installing  = List.lookup Installing  times
     completed   = List.lookup Completed   times
 
@@ -120,11 +123,18 @@ entriesToPhase start times = Phase
             Nothing -> bt `minusw` start
 
     calcBuilding :: Word64
-    calcBuilding = case installing of
+    calcBuilding = case haddock <|> installing of
+      Nothing -> 0
+      Just ba -> case building of
+        Nothing -> ba `minusw` start
+        Just bt -> ba `minusw` bt
+
+    calcHaddock :: Word64
+    calcHaddock = case haddock of
         Nothing -> 0
-        Just it -> case building of
-            Nothing -> it `minusw` start
-            Just bt -> it `minusw` bt
+        Just hd -> case installing of
+            Nothing -> hd `minusw` start
+            Just it -> it `minusw` hd
 
     calcInstalling :: Word64
     calcInstalling = case completed of
@@ -146,10 +156,11 @@ formatChart start end width libs = unlines $ concat $
     legend :: [Text]
     legend =
         [ b "Legend"
-        , "  " <> fmt [cyan]   block <> "  Downloading"
-        , "  " <> fmt [blue]   block <> "  Starting"
-        , "  " <> fmt [red]    block <> "  Building"
-        , "  " <> fmt [yellow] block <> "  Installing"
+        , "  " <> fmt [cyan]    block <> "  Downloading"
+        , "  " <> fmt [blue]    block <> "  Starting"
+        , "  " <> fmt [red]     block <> "  Building"
+        , "  " <> fmt [magenta] block <> "  Haddock"
+        , "  " <> fmt [yellow]  block <> "  Installing"
         , ""
         ]
 
@@ -175,10 +186,11 @@ formatChart start end width libs = unlines $ concat $
     formatRow :: Text -> Phase -> Text
     formatRow libName phase@Phase{..} = mconcat
         [ fmtPrefix libName phase
-        , formatSinglePhase cyan   phaseDownloading
-        , formatSinglePhase blue   phaseStarting
-        , formatSinglePhase red    phaseBuilding
-        , formatSinglePhase yellow phaseInstalling
+        , formatSinglePhase cyan    phaseDownloading
+        , formatSinglePhase blue    phaseStarting
+        , formatSinglePhase red     phaseBuilding
+        , formatSinglePhase magenta phaseHaddock
+        , formatSinglePhase yellow  phaseInstalling
         ]
 
     entries :: [(Text, Phase)]
