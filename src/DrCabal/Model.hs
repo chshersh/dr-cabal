@@ -28,6 +28,7 @@ data Status
     | Downloaded
     | Starting
     | Building
+    | Haddock
     | Installing
     | Completed
     deriving stock (Show, Read, Eq, Ord, Enum, Bounded)
