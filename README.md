@@ -131,7 +131,7 @@ steps, run the following command to pretty-print the profiling output:
 > ⚠️ **WARNING:** For better results, make your terminal full-screen.
 
 ```shell
-cabal profile --input=dr-cabal-debug.json
+dr-cabal profile --input=dr-cabal-debug.json
 ```
 
 You'll see the output like on the image below:
