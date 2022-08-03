@@ -10,13 +10,15 @@ Data types to model the domain of the @cabal@ output.
 -}
 
 module DrCabal.Model
-    ( Line (..)
+    ( Style (..)
+    , Line (..)
     , Status (..)
     , Entry (..)
     ) where
 
 import Data.Aeson (FromJSON (..), ToJSON (..), object, withObject, withText, (.:), (.=))
 
+data Style = Stacked
 
 data Line = Line
     { lineTime :: Word64
