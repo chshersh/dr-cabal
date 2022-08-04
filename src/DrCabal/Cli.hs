@@ -19,6 +19,8 @@ module DrCabal.Cli
     , ProfileArgs (..)
     ) where
 
+import DrCabal.Model (Style (..))
+
 import qualified Options.Applicative as Opt
 
 data Command
@@ -29,8 +31,9 @@ newtype WatchArgs = WatchArgs
     { watchArgsOutput :: FilePath
     }
 
-newtype ProfileArgs = ProfileArgs
+data ProfileArgs = ProfileArgs
     { profileArgsInput :: FilePath
+    , profileArgsStyle :: Style
     }
 
 readCommand :: IO Command
@@ -73,4 +76,13 @@ profileP = do
         , Opt.help "Read profile input from a JSON file, created by 'dr-cabal watch'"
         ]
 
+    profileArgsStyle <- stackedP <|> pure Stacked
+
     pure $ Profile ProfileArgs{..}
+
+stackedP :: Opt.Parser Style
+stackedP = Opt.flag' Stacked $ mconcat
+    [ Opt.long "stacked"
+    , Opt.short 's'
+    , Opt.help "Format as stacked"
+    ]
