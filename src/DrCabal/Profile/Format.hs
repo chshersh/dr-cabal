@@ -1,9 +1,12 @@
 module DrCabal.Profile.Format
     ( fmt
     , fmtNanos
+    , fmtDecimalPlaces
     )where
 
 import Colourista.Pure (formatWith)
+import Data.Text (pack)
+import Numeric (showFFloat)
 
 fmt :: [Text] -> Text -> Text
 fmt = formatWith
@@ -34,3 +37,6 @@ fmtNanos time
     emptyIfZero :: Word64 -> Text -> Text
     emptyIfZero 0 _    = ""
     emptyIfZero t unit = show t <> unit
+
+fmtDecimalPlaces :: Int -> Float -> Text
+fmtDecimalPlaces dp f = pack $ showFFloat (Just dp) f ""
