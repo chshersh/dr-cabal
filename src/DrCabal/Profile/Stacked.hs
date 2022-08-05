@@ -6,7 +6,7 @@ import Colourista.Pure (blue, cyan, red, yellow, magenta)
 import Colourista.Short (b, i)
 
 import DrCabal.Model (Status (..), Entry (..))
-import DrCabal.Profile.Format (fmt, fmtNanos)
+import DrCabal.Profile.Format (fmt, fmtNanos, fmtDecimalPlaces)
 
 import qualified Data.List as List
 import qualified Data.Map.Strict as Map
@@ -116,8 +116,11 @@ formatChart start end width libs = unlines $ concat
     summary :: [Text]
     summary =
         [ b "Summary"
-        , i "  Total dependency build time" <> " : " <> fmtNanos (end - start)
-        , i "  Single block resolution    " <> " : " <> fmtNanos blockMeasure
+        , i "  Wall time              " <> " : " <> fmtNanos (end - start)
+        , i "  Dependency sum time    " <> " : " <> fmtNanos totalAllPhases
+        , i "  Total dependencies     " <> " : " <> show (Map.size libs)
+        , i "  Parallelism level      " <> " : " <> fmtDecimalPlaces 2 parallelism
+        , i "  Single block resolution" <> " : " <> fmtNanos blockMeasure
         , ""
         ]
 
@@ -149,6 +152,12 @@ formatChart start end width libs = unlines $ concat
 
     longestPhase :: Word64
     longestPhase = List.maximum $ map (phaseTotal . snd) entries
+
+    totalAllPhases :: Word64
+    totalAllPhases = getSum $ foldMap (Sum . phaseTotal . snd) entries
+
+    parallelism :: Float
+    parallelism = fromIntegral totalAllPhases / fromIntegral (end - start)
 
     fmtPhase :: Phase -> Text
     fmtPhase = fmtNanos . phaseTotal
