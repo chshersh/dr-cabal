@@ -154,7 +154,7 @@ formatChart start end width libs = unlines $ concat
     longestPhase = List.maximum $ map (phaseTotal . snd) entries
 
     totalAllPhases :: Word64
-    totalAllPhases = getSum $ foldMap (Sum . phaseTotal . snd) entries
+    totalAllPhases = sum $ map (phaseTotal . snd) entries
 
     parallelism :: Float
     parallelism = fromIntegral totalAllPhases / fromIntegral (end - start)
