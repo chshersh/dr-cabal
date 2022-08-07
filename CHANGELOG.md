@@ -9,7 +9,7 @@ The changelog is available [on GitHub][2].
   Support `Haddock` phase in `cabal build` output
   (by [@diasbruno](https://github.com/diasbruno))
 * [#14](https://github.com/chshersh/dr-cabal/issues/14):
-  Support `Haddock` phase in `cabal build` output
+  Enrich _Summary_ with more info: parallelism level, total dependencies summary
   (by [@bradrn](https://github.com/bradrn))
 * Module structure refactoring to add new profiling modes easier
   (by [@diasbruno](https://github.com/diasbruno))
