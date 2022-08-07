@@ -1,16 +1,28 @@
-module DrCabal.Profile.Stacked
-  ( createStackedChart
-  ) where
+{- |
+Module                  : DrCabal.Profile.Stacked
+Copyright               : (c) 2022 Dmitrii Kovanikov
+SPDX-License-Identifier : MPL-2.0
+Maintainer              : Dmitrii Kovanikov <kovanikov@gmail.com>
+Stability               : Experimental
+Portability             : Portable
 
-import Colourista.Pure (blue, cyan, red, yellow, magenta)
+Stacked profiling output mode.
+-}
+
+module DrCabal.Profile.Stacked
+    ( createStackedChart
+    ) where
+
+import Colourista.Pure (blue, cyan, magenta, red, yellow)
 import Colourista.Short (b, i)
 
-import DrCabal.Model (Status (..), Entry (..))
-import DrCabal.Profile.Format (fmt, fmtNanos, fmtDecimalPlaces)
+import DrCabal.Model (Entry (..), Status (..))
+import DrCabal.Profile.Format (fmt, fmtDecimalPlaces, fmtNanos)
 
 import qualified Data.List as List
 import qualified Data.Map.Strict as Map
 import qualified Data.Text as Text
+
 
 data Phase = Phase
     { phaseDownloading :: Word64

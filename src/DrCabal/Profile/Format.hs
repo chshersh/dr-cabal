@@ -1,12 +1,24 @@
+{- |
+Module                  : DrCabal.Profile.Format
+Copyright               : (c) 2022 Dmitrii Kovanikov
+SPDX-License-Identifier : MPL-2.0
+Maintainer              : Dmitrii Kovanikov <kovanikov@gmail.com>
+Stability               : Experimental
+Portability             : Portable
+
+Formatting functions for the @profile@ command.
+-}
+
 module DrCabal.Profile.Format
     ( fmt
     , fmtNanos
     , fmtDecimalPlaces
-    )where
+    ) where
 
 import Colourista.Pure (formatWith)
 import Data.Text (pack)
 import Numeric (showFFloat)
+
 
 fmt :: [Text] -> Text -> Text
 fmt = formatWith

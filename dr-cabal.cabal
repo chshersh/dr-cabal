@@ -1,6 +1,6 @@
 cabal-version:       3.0
 name:                dr-cabal
-version:             0.0.0.0
+version:             0.1.0.0
 synopsis:            See README for more info
 description:
     CLI tool for profiling Haskell dependencies build times.
@@ -16,7 +16,7 @@ category:            Profiling,Development
 build-type:          Simple
 extra-doc-files:     README.md
                      CHANGELOG.md
-tested-with:         GHC == 9.2.3
+tested-with:         GHC == 9.2.4
                      GHC == 9.0.2
 
 source-repository head
@@ -83,8 +83,8 @@ library
       DrCabal.Cli
       DrCabal.Model
       DrCabal.Profile
-      DrCabal.Profile.Format
-      DrCabal.Profile.Stacked
+        DrCabal.Profile.Format
+        DrCabal.Profile.Stacked
       DrCabal.Watch
 
   build-depends:

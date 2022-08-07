@@ -3,6 +3,17 @@
 `dr-cabal` uses [PVP Versioning][1].
 The changelog is available [on GitHub][2].
 
+## 0.1.0.0 — August 6, 2022 📚
+
+* [#10](https://github.com/chshersh/dr-cabal/issues/10):
+  Support `Haddock` phase in `cabal build` output
+  (by [@diasbruno](https://github.com/diasbruno))
+* [#14](https://github.com/chshersh/dr-cabal/issues/14):
+  Support `Haddock` phase in `cabal build` output
+  (by [@bradrn](https://github.com/bradrn))
+* Module structure refactoring to add new profiling modes easier
+  (by [@diasbruno](https://github.com/diasbruno))
+
 ## 0.0.0.0 — July 31, 2022 🌇
 
 * Initially created.
