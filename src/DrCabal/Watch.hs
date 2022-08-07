@@ -18,7 +18,7 @@ module DrCabal.Watch
 
 import Colourista.Short (b)
 import Control.Concurrent (threadDelay)
-import Control.Concurrent.Async (wait, withAsync)
+import Control.Concurrent.Async (concurrently_)
 import Data.Aeson.Encode.Pretty (encodePretty)
 import GHC.Clock (getMonotonicTimeNSec)
 import System.Console.ANSI (clearLine, setCursorColumn)
@@ -36,9 +36,9 @@ runWatch :: WatchArgs -> IO ()
 runWatch WatchArgs{..} = do
     watchRef <- newIORef [Start]
 
-    withAsync (watchWorker watchRef) $ \workerAsync -> do
-        readFromStdin watchRef watchArgsOutput
-        wait workerAsync
+    concurrently_
+        (watchWorker watchRef)
+        (readFromStdin watchRef watchArgsOutput)
 
 readFromStdin :: IORef [WatchAction] -> FilePath -> IO ()
 readFromStdin watchRef outputPath = go []
