@@ -116,7 +116,7 @@ The algorithm works this way:
 5. Set L := L' and return to Step 2.
 -}
 computeCriticalPath :: Map Text [(Status, Word64)] -> [Text]
-computeCriticalPath libs = case Map.maxView libsByFinishTime of
+computeCriticalPath libs = case Map.maxView finishTimeToLibs of
     Nothing -> []  -- oh well, seems the log was empty
     Just (lastLib, _) -> lastLib : unfoldr go lastLib
   where
@@ -127,13 +127,15 @@ computeCriticalPath libs = case Map.maxView libsByFinishTime of
     libsByStartTime :: Map Text Word64
     libsByStartTime = Map.fromList $ map (fmap List.minimum) libsList
 
-    libsByFinishTime :: Map Word64 Text
-    libsByFinishTime = Map.fromList $ map (swap . fmap List.maximum) libsList
+    -- Given that timestamps are in nanoseconds, we do not really
+    -- expect any entries to have the same finish time.
+    finishTimeToLibs :: Map Word64 Text
+    finishTimeToLibs = Map.fromList $ map (swap . fmap List.maximum) libsList
 
     go :: Text -> Maybe (Text, Text)
     go lib = do
         phase <- Map.lookup lib libsByStartTime
-        let (finishedBefore, _) = Map.split phase libsByFinishTime
+        let (finishedBefore, _) = Map.split phase finishTimeToLibs
         prevLib <- fst <$> Map.maxView finishedBefore
         pure (prevLib, prevLib)
 
@@ -210,8 +212,7 @@ formatChart start end width critPath libs = unlines $ concat
 
     fmtPrefix :: Text -> Phase -> Text
     fmtPrefix libName phase = mconcat
-        [ (if isOnCritPath then b else id) (Text.justifyRight libSize ' ' libName)
-        , if isOnCritPath then b "*" else " "
+        [ fmtCritPath
         , " ["
         , Text.justifyLeft phaseSize ' ' $ fmtPhase phase
         , "] "
@@ -219,7 +220,15 @@ formatChart start end width critPath libs = unlines $ concat
         , " "
         ]
       where
+        isOnCritPath :: Bool
         isOnCritPath = libName `elem` critPath
+
+        fmtCritPath :: Text
+        fmtCritPath
+            | isOnCritPath = b $ paddedLibName <> "*"
+            | otherwise = paddedLibName <> " "
+          where
+            paddedLibName = Text.justifyRight libSize ' ' libName
 
     -- How many nanoseconds each block represents?
     -- blocks take:
