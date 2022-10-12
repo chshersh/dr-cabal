@@ -99,15 +99,13 @@ follow these steps:
 > rm -rf ~/.cabal
 > ```
 >
-> You may prefer a less invasive approach if you have custom global
-> Cabal configurations:
+> A less invasive approach is to point Cabal to a fresh store folder, 
+> but in this case you won't see the `Downloading` phase in the profiling 
+> output:
 >
 > ```shell
-> rm -rf ~/.cabal/store
+> cabal --store-dir=$(mktemp -d) build all
 > ```
->
-> However, with the latter solution you won't see the `Downloading`
-> phase in the profiling output.
 
 Run the following command inside the project directory, for which you
 want to build the profile chart:
