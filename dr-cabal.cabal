@@ -81,6 +81,7 @@ library
   exposed-modules:
     DrCabal
       DrCabal.Cli
+      DrCabal.Interactive
       DrCabal.Model
       DrCabal.Profile
         DrCabal.Profile.Format

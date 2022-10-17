@@ -11,6 +11,8 @@ Portability             : Portable
 
 module DrCabal.Profile
     ( runProfile
+    , getTerminalWidth
+    , createChart
     ) where
 
 import Colourista.Short (u)
@@ -41,10 +43,13 @@ runProfile ProfileArgs{..} = do
 
     entries <- readFromFile profileArgsInput
 
-    let chart = case profileArgsStyle of
-          Stacked -> createStackedChart terminalWidth entries
+    let chart = createChart profileArgsStyle terminalWidth entries
 
     putTextLn chart
+
+createChart :: Style -> Int -> [Entry] -> Text
+createChart = \case
+    Stacked -> createStackedChart
 
 readFromFile :: FilePath -> IO [Entry]
 readFromFile file = eitherDecodeFileStrict' file >>= \case
