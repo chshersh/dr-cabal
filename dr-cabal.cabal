@@ -95,6 +95,7 @@ library
     , bytestring           ^>= 0.11
     , colourista           ^>= 0.1
     , optparse-applicative ^>= 0.17
+    , terminal-size        ^>= 0.3.3
 
 executable dr-cabal
   import:              common-options
