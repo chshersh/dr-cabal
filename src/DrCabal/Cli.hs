@@ -17,6 +17,7 @@ module DrCabal.Cli
 
     , WatchArgs (..)
     , ProfileArgs (..)
+    , InteractiveArgs (..)
     ) where
 
 import DrCabal.Model (Style (..))
@@ -26,6 +27,7 @@ import qualified Options.Applicative as Opt
 data Command
     = Watch WatchArgs
     | Profile ProfileArgs
+    | Interactive InteractiveArgs
 
 newtype WatchArgs = WatchArgs
     { watchArgsOutput :: FilePath
@@ -34,6 +36,10 @@ newtype WatchArgs = WatchArgs
 data ProfileArgs = ProfileArgs
     { profileArgsInput :: FilePath
     , profileArgsStyle :: Style
+    }
+
+newtype InteractiveArgs = InteractiveArgs
+    { interactiveArgsStyle :: Style
     }
 
 readCommand :: IO Command
@@ -47,14 +53,14 @@ readCommand = Opt.execParser opts
 
 -- | All possible commands.
 commandP :: Opt.Parser Command
-commandP = Opt.subparser $ mconcat
+commandP = Opt.subparser (mconcat
     [ Opt.command "watch"
           $ Opt.info (Opt.helper <*> watchP)
           $ Opt.progDesc "Watch cabal output and save it"
     , Opt.command "profile"
           $ Opt.info (Opt.helper <*> profileP)
           $ Opt.progDesc "Output pretty cabal profile results"
-    ]
+    ]) <|> interactiveP
 
 watchP :: Opt.Parser Command
 watchP = do
@@ -79,6 +85,12 @@ profileP = do
     profileArgsStyle <- stackedP <|> pure Stacked
 
     pure $ Profile ProfileArgs{..}
+
+interactiveP :: Opt.Parser Command
+interactiveP = do
+    interactiveArgsStyle <- stackedP <|> pure Stacked
+
+    pure $ Interactive InteractiveArgs{..}
 
 stackedP :: Opt.Parser Style
 stackedP = Opt.flag' Stacked $ mconcat

@@ -14,6 +14,7 @@ Implementation of the @dr-cabal watch@ command.
 
 module DrCabal.Watch
     ( runWatch
+    , parseLine
     ) where
 
 import Colourista.Short (b)
