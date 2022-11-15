@@ -11,50 +11,55 @@ Portability             : Portable
 
 module DrCabal.Profile
     ( runProfile
-    , getTerminalWidth
-    , createChart
     ) where
 
-import Colourista.Short (u)
-import Data.Aeson (eitherDecodeFileStrict')
-import System.Console.Terminal.Size (Window(..), size)
 
-import DrCabal.Cli (ProfileArgs (..))
-import DrCabal.Model (Entry (..), Style (Stacked))
+import DrCabal.Cli (FileMode (..), ProfileArgs (..))
+import DrCabal.Json (readEntries, writeEntries)
+import DrCabal.Model (Entry (..), Style (..))
 import DrCabal.Profile.Stacked (createStackedChart)
+import DrCabal.Terminal (getTerminalWidth)
+import DrCabal.Watch (watchBuild)
 
-import qualified Colourista
-
-getTerminalWidth :: IO Int
-getTerminalWidth = size >>= \case
-    Just (Window _height width) -> pure width
-    Nothing -> do
-        putText $ unlines
-            [ "Error getting the terminal width. If you see this error, open an issue"
-            , "in the 'dr-cabal' issue tracker and provide as many details as possible"
-            , ""
-            , "  * " <> u "https://github.com/chshersh/dr-cabal/issues/new"
-            ]
-        exitFailure
 
 runProfile :: ProfileArgs -> IO ()
-runProfile ProfileArgs{..} = do
+runProfile ProfileArgs{..} = case profileArgsFileMode of
+     None ->
+         profileInteractive profileArgsStyle
+     Output outputFile ->
+         profileWithOutput profileArgsStyle outputFile
+     Input inputFile ->
+         profileFromInput profileArgsStyle inputFile
+
+profileInteractive :: Style -> IO ()
+profileInteractive chartStyle = do
+    hSetBuffering stdout (BlockBuffering Nothing)
     terminalWidth <- getTerminalWidth
+    let drawChart = createChart chartStyle terminalWidth
+    void $ watchBuild drawChart
 
-    entries <- readFromFile profileArgsInput
+profileWithOutput :: Style -> FilePath -> IO ()
+profileWithOutput chartStyle outputFile = do
+    hSetBuffering stdout (BlockBuffering Nothing)
+    terminalWidth <- getTerminalWidth
+    let drawChart = createChart chartStyle terminalWidth
+    entries <- watchBuild drawChart
+    writeEntries outputFile entries
 
-    let chart = createChart profileArgsStyle terminalWidth entries
-
+profileFromInput :: Style -> FilePath -> IO ()
+profileFromInput chartStyle inputFile = do
+    terminalWidth <- getTerminalWidth
+    entries <- readEntries inputFile
+    let chart = createChart chartStyle terminalWidth entries
     putTextLn chart
 
-createChart :: Style -> Int -> [Entry] -> Text
+createChart
+    :: Style
+    -- ^ Chart type
+    -> Int
+    -- ^ Terminal width
+    -> [Entry]
+    -- ^ Time entries
+    -> Text
 createChart = \case
     Stacked -> createStackedChart
-
-readFromFile :: FilePath -> IO [Entry]
-readFromFile file = eitherDecodeFileStrict' file >>= \case
-    Left err -> do
-        Colourista.errorMessage $ "Error parsing file: " <> toText file
-        Colourista.redMessage   $ "      " <> toText err
-        exitFailure
-    Right entries -> pure entries

@@ -14,9 +14,13 @@ module DrCabal.Model
     , Line (..)
     , Status (..)
     , Entry (..)
+    , parseLine
     ) where
 
 import Data.Aeson (FromJSON (..), ToJSON (..), object, withObject, withText, (.:), (.=))
+
+import qualified Data.Text as Text
+
 
 data Style = Stacked
 
@@ -62,3 +66,20 @@ instance FromJSON Entry where
         entryStart   <- o .: "startTime"
         entryLibrary <- o .: "library"
         pure Entry{..}
+
+parseLine :: Line -> Maybe Entry
+parseLine Line{..} = do
+    let txtLine = decodeUtf8 lineLine
+    txtStatus : library : _ <- Just $ words txtLine
+
+    -- parse status string to the 'Status' type
+    status <- readMaybe $ toString txtStatus
+
+    -- check if this line is a library: '-' separates library name and its version
+    guard $ Text.elem '-' library
+
+    pure $ Entry
+        { entryStatus  = status
+        , entryStart   = lineTime
+        , entryLibrary = library
+        }

@@ -9,94 +9,119 @@ Maintainer              : Dmitrii Kovanikov <kovanikov@gmail.com>
 Stability               : Experimental
 Portability             : Portable
 
-Implementation of the @dr-cabal watch@ command.
+Watch the output of the @cabal build@ command and update the profile
+chart interactively.
 -}
 
 module DrCabal.Watch
-    ( runWatch
-    , parseLine
+    ( watchBuild
     ) where
 
 import Colourista.Short (b)
 import Control.Concurrent (threadDelay)
-import Control.Concurrent.Async (concurrently_)
-import Data.Aeson.Encode.Pretty (encodePretty)
+import Control.Concurrent.Async (concurrently)
 import GHC.Clock (getMonotonicTimeNSec)
-import System.Console.ANSI (clearLine, setCursorColumn)
 import System.IO (isEOF)
 
-import DrCabal.Cli (WatchArgs (..))
-import DrCabal.Model (Entry (..), Line (..))
+import DrCabal.Model (Entry (..), Line (..), parseLine)
+import DrCabal.Terminal (clearScreen)
 
 import qualified Colourista
 import qualified Data.ByteString as ByteString
-import qualified Data.Text as Text
 
 
-runWatch :: WatchArgs -> IO ()
-runWatch WatchArgs{..} = do
-    watchRef <- newIORef [Start]
+{- | Watch build entries from @stdin@ and interactively update the
+chart and current status.
+-}
+watchBuild
+    :: ([Entry] -> Text)
+    -- ^ A function to draw chart
+    -> IO [Entry]
+    -- ^ Returns the final list of entries
+watchBuild drawChart = do
+    inputActionRef <- newIORef [Start]
 
-    concurrently_
-        (watchWorker watchRef)
-        (readFromStdin watchRef watchArgsOutput)
+    (entries, _) <- concurrently
+        (interactiveWorker inputActionRef drawChart)
+        (stdinReaderWorker inputActionRef)
 
-readFromStdin :: IORef [WatchAction] -> FilePath -> IO ()
-readFromStdin watchRef outputPath = go []
+    pure entries
+
+stdinReaderWorker :: IORef [InputAction] -> IO ()
+stdinReaderWorker inputActionRef = go
   where
-    go :: [Line] -> IO ()
-    go cabalOutput = do
+    go :: IO ()
+    go = do
         isEndOfInput <- isEOF
         if isEndOfInput
         then do
-            pushAction watchRef $ End outputPath cabalOutput
+            pushAction inputActionRef End
         else do
             time <- getMonotonicTimeNSec
             line <- ByteString.getLine
+            let ln = Line time line
 
             -- output line to the watch worker for output redirection
-            pushAction watchRef $ Consume line
+            pushAction inputActionRef $ Consume ln
 
-            go $ Line time line : cabalOutput
+            go
 
-linesToEntries :: [Line] -> [Entry]
-linesToEntries = mapMaybe parseLine . reverse
-
-parseLine :: Line -> Maybe Entry
-parseLine Line{..} = do
-    let txtLine = decodeUtf8 lineLine
-    txtStatus : library : _ <- Just $ words txtLine
-
-    -- parse status string to the 'Status' type
-    status <- readMaybe $ toString txtStatus
-
-    -- check if this line is a library: '-' separates library name and its version
-    guard $ Text.elem '-' library
-
-    pure $ Entry
-        { entryStatus  = status
-        , entryStart   = lineTime
-        , entryLibrary = library
-        }
-
-data WatchAction
+-- | Action returned by the @stdinReaderWorker@.
+data InputAction
+    -- | Produce the initial message
     = Start
-    | Consume ByteString
-    | End FilePath [Line]
 
--- | Add 'WatchAction' to end of the list
-pushAction :: IORef [WatchAction] -> WatchAction -> IO ()
-pushAction watchRef action =
-    atomicModifyIORef' watchRef $ \actions -> (actions ++ [action], ())
+    -- | Line content read from @stdin@ with timestamp
+    | Consume Line
 
-data WorkerCommand
+    -- | EOF reached for @stdin@
+    | End
+
+-- | Add 'InputAction' to end of the queue in the given 'IORef'.
+pushAction :: IORef [InputAction] -> InputAction -> IO ()
+pushAction inputActionRef action =
+    atomicModifyIORef' inputActionRef $ \actions -> (actions ++ [action], ())
+
+data InteractiveCommand
+    -- | Initial message
     = Greeting
-    | WriteLine ByteString
-    | Wait
-    | Finish FilePath [Line]
 
-watchWorker :: IORef [WatchAction] -> IO ()
-watchWorker watchRef = go "Watching build output" (cycle spinnerFrames)
+    -- | New line received from the @stdinReaderWorker@. Update the chart.
+    | UpdateChart Line
+
+    -- | No new lines from @stdin@. Simply wait and update the spinner.
+    | Wait
+
+    -- | Finished reading lines from @stdin@
+    | Finish
+
+{- | Produce the next 'InteractiveCommand' by reading the current
+'InputAction' and removing it from the queue.
+-}
+nextCommand :: IORef [InputAction] -> IO InteractiveCommand
+nextCommand inputActionRef = atomicModifyIORef' inputActionRef popAction
+  where
+    popAction :: [InputAction] -> ([InputAction], InteractiveCommand)
+    popAction [] = ([], Wait)
+    popAction (x : xs) = case x of
+        Start     -> (xs, Greeting)
+        Consume l -> (xs, UpdateChart l)
+        End       -> ([], Finish)
+
+-- | A data type
+data Output = Output
+    { outputCabalLog :: Text
+    , outputEntries  :: [Entry]
+    }
+
+interactiveWorker
+    :: IORef [InputAction]
+    -- ^ Mutable reference to the queue of input actions
+    -> ([Entry] -> Text)
+    -- ^ A function to draw the chart
+    -> IO [Entry]
+interactiveWorker inputActionRef drawChart =
+    go (Output "Profiling 'cabal build' interactively..." []) (cycle spinnerFrames)
   where
     spinnerFrames :: [Text]
     spinnerFrames =
@@ -112,52 +137,53 @@ watchWorker watchRef = go "Watching build output" (cycle spinnerFrames)
         , "⠏"
         ]
 
-    go :: Text -> [Text] -> IO ()
+    go :: Output -> [Text] -> IO [Entry]
     go _ [] = do
         Colourista.errorMessage $
             "Panic! At the 'dr-cabal'! Impossible happened: list of frames is empty"
         exitFailure
-    go prevLine (frame : frames) = do
-        command <- atomicModifyIORef' watchRef popAction
+    go prevOutput (frame : frames) = do
+        command <- nextCommand inputActionRef
+
         case command of
             Greeting -> do
-                Colourista.formattedMessage
-                    [Colourista.blue, Colourista.bold]
-                    "Watching cabal output..."
-
-                go prevLine (frame : frames)
-            WriteLine line -> do
-                resetLine
-                let l = decodeUtf8 line
-                putText $ frame <> " " <> l
-                hFlush stdout
-                threadDelay 80_000  -- wait 80 ms to update spinner
-                go l frames
+                printOutput frame prevOutput prevOutput
+                go prevOutput (frame : frames)
+            UpdateChart line@Line{..} -> case parseLine line of
+                Nothing -> do
+                    let newOutput = prevOutput { outputCabalLog = decodeUtf8 lineLine }
+                    printOutput frame prevOutput newOutput
+                    go newOutput frames
+                Just entry -> do
+                    let newOutput = Output
+                            { outputCabalLog = decodeUtf8 lineLine
+                            , outputEntries  = outputEntries prevOutput ++ [entry]
+                            }
+                    printOutput frame prevOutput newOutput
+                    go newOutput frames
             Wait -> do
-                resetLine
-                putText $ frame <> " " <> prevLine
-                hFlush stdout
-                threadDelay 80_000  -- wait 80 ms to update spinner
-                go prevLine frames
-            Finish outputPath lns -> do
-                writeFileLBS outputPath $ encodePretty $ linesToEntries lns
-                resetLine
-                putTextLn $ unlines
-                    [ b "Build finished successfully!"
-                    , ""
-                    , "To see the profiling output, run the following command:"
-                    , ""
-                    , "    dr-cabal profile --input=" <> toText outputPath
-                    ]
+                printOutput frame prevOutput prevOutput
+                go prevOutput frames
 
-    popAction :: [WatchAction] -> ([WatchAction], WorkerCommand)
-    popAction [] = ([], Wait)
-    popAction (x : xs) = case x of
-        Start        -> (xs, Greeting)
-        Consume l    -> (xs, WriteLine l)
-        End path lns -> ([], Finish path lns)
+            Finish -> do
+                putTextLn $ b "Build finished successfully!"
+                pure $ outputEntries prevOutput
 
-    resetLine :: IO ()
-    resetLine = do
-        clearLine
-        setCursorColumn 0
+    printOutput :: Text -> Output -> Output -> IO ()
+    printOutput frame oldOutput newOutput = do
+        clearPreviousOutput oldOutput
+        putText $ fmtOutput frame newOutput
+        hFlush stdout
+        threadDelay 80_000  -- wait 80 ms to update spinner
+
+    clearPreviousOutput :: Output -> IO ()
+    clearPreviousOutput output = do
+        let fakeFrame = ""
+        let screenHeight = length $ lines $ fmtOutput fakeFrame output
+        clearScreen screenHeight
+
+    fmtOutput :: Text -> Output -> Text
+    fmtOutput frame Output{..} =
+        frame <> " " <> outputCabalLog <> "\n" <> case outputEntries of
+            [] -> ""
+            _  -> drawChart outputEntries
