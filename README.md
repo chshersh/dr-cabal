@@ -99,8 +99,8 @@ follow these steps:
 > rm -rf ~/.cabal
 > ```
 >
-> A less invasive approach is to point Cabal to a fresh store folder, 
-> but in this case you won't see the `Downloading` phase in the profiling 
+> A less invasive approach is to point Cabal to a fresh store folder,
+> but in this case you won't see the `Downloading` phase in the profiling
 > output:
 >
 > ```shell

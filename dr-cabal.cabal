@@ -81,11 +81,12 @@ library
   exposed-modules:
     DrCabal
       DrCabal.Cli
-      DrCabal.Interactive
+      DrCabal.Json
       DrCabal.Model
       DrCabal.Profile
         DrCabal.Profile.Format
         DrCabal.Profile.Stacked
+      DrCabal.Terminal
       DrCabal.Watch
 
   build-depends:
