@@ -6,7 +6,7 @@
 
 `dr-cabal` is a CLI tool for profiling Haskell dependencies build times.
 
-![dr-cabal example](https://raw.githubusercontent.com/chshersh/dr-cabal/main/images/dr-cabal-example.png)
+![dr-cabal demo](https://raw.githubusercontent.com/chshersh/dr-cabal/main/images/dr-cabal-demo.gif)
 
 > ℹ️ **DISCLAIMER:** This project is developed and maintained in
 > free time by volunteers. The development may continue for decades or
@@ -16,8 +16,8 @@
 
 ## Install
 
-`dr-cabal` is a Haskell CLI tool and can be installed either from
-Hackage or from this repository.
+`dr-cabal` is a CLI tool written in Haskell and can be installed
+either from Hackage or from this repository.
 
 ### Prerequisites
 
@@ -41,13 +41,12 @@ follow these steps:
 	```
 
 2. Build `dr-cabal` from Hackage and copy the resulting executable
-   into the desired location:
+   into the desired location (e.g. `$HOME/.local/bin`):
 
     ```shell
     cabal install dr-cabal \
         --install-method=copy \
         --overwrite-policy=always \
-        --with-compiler=ghc-9.0.2 \
         --installdir=$HOME/.local/bin
 	```
 
@@ -81,53 +80,59 @@ follow these steps:
 > ℹ️ **NOTE:** Make sure the `~/.local/bin` directory or the
 > directory of your choice is listed in `$PATH`.
 
-## How to use?
+## Quick start guide
 
-`dr-cabal` usages comprises two steps:
+Run the following command to view interactive profiling report:
 
-1. 👀 Watching `cabal build` output and recording data into a JSON file.
-2. 🌈 Producing pretty profiling results.
+```shell
+cabal --store-dir=$(mktemp -d) build --dependencies-only all | dr-cabal profile
+```
 
-### Watch
+### Explanation
 
-> ⚠️ **WARNING:** To get meaningful results, the `dr-cabal watch`
-> command needs to be run when none of the dependencies are build. If
-> you've already build you project, including dependencies, you can
-> purge global Cabal cache using the following command:
+This section explains the above command:
+
+1. `dr-cabal` watches the output of the `cabal build` command to
+   produce the profiling report. Step into the directory of the
+   Haskell project you want to profile and pipe the output of
+   `cabal build` to `dr-cabal profile`.
+2. Currently, `dr-cabal` can profile only dependencies. So you can
+   pass the `--dependencies-only` to avoid extra wait.
+3. `cabal` caches built dependencies. You can specify a custom
+   directory for storing build artifacts using the `--store-dir` flag
+   to build the dependencies anew.
+4. The `$(mktemp -d)` command generates a temporary directory so you
+   can run the build time profiler in an isolated location.
+
+> ⚠️ **WARNING:** To get meaningful results, including downloading
+> of packages, the `dr-cabal watch` command needs to be run when
+> none of the dependencies are build (i.e. with cold cabal
+> cache). If you've already build you project, including
+> dependencies, you can purge global Cabal cache using the
+> following command:
 >
 > ```shell
 > rm -rf ~/.cabal
 > ```
->
-> A less invasive approach is to point Cabal to a fresh store folder,
-> but in this case you won't see the `Downloading` phase in the profiling
-> output:
->
-> ```shell
-> cabal --store-dir=$(mktemp -d) build all
-> ```
 
-Run the following command inside the project directory, for which you
-want to build the profile chart:
+## Usage
+
+> ℹ️ In this section, a more verbose `cabal-install` command from
+> "Quick start guide" is replaced with shorter `cabal build`.
+
+`dr-cabal` supports profiling of documentation as well, you only need
+to pass relevant flags to `cabal build`:
 
 ```shell
-cabal build all | dr-cabal watch --output=dr-cabal-debug.json
+cabal build --enable-documentation --haddock-all | dr-cabal profile
 ```
 
-This command watches the `cabal build` output and records all the
-relevant steps in the `dr-cabal-debug.json` file.
+To cache the profiling results in JSON (and avoid building the project
+again), use the `--output` flag:
 
-If everything is good, you should see output similar to the below one:
-
-![dr-cabal watch example](https://raw.githubusercontent.com/chshersh/dr-cabal/main/images/dr-cabal-watch.gif)
-
-> It's also possible to see the time spent on Haddock. You can run with:
->
-> ```shell
-> cabal build all --enable-documentation --haddock-all | dr-cabal watch --output=dr-cabal-debug.json
-> ```
-
-### Profile
+```shell
+cabal build | dr-cabal profile --output=my_file.json
+```
 
 Once you successfully produced a JSON file with all the recorded
 steps, run the following command to pretty-print the profiling output:
@@ -135,7 +140,7 @@ steps, run the following command to pretty-print the profiling output:
 > ⚠️ **WARNING:** For better results, make your terminal full-screen.
 
 ```shell
-dr-cabal profile --input=dr-cabal-debug.json
+dr-cabal profile --input=my_file.json
 ```
 
 You'll see the output like on the image below:
