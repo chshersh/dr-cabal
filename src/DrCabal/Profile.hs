@@ -13,12 +13,11 @@ module DrCabal.Profile
     ( runProfile
     ) where
 
-
 import DrCabal.Cli (FileMode (..), ProfileArgs (..))
 import DrCabal.Json (readEntries, writeEntries)
 import DrCabal.Model (Entry (..), Style (..))
 import DrCabal.Profile.Stacked (createStackedChart)
-import DrCabal.Terminal (getTerminalWidth)
+import DrCabal.Terminal (getTerminalWidth, withAlternateBuffer)
 import DrCabal.Watch (watchBuild)
 
 
@@ -33,18 +32,34 @@ runProfile ProfileArgs{..} = case profileArgsFileMode of
 
 profileInteractive :: Style -> IO ()
 profileInteractive chartStyle = do
-    hSetBuffering stdout (BlockBuffering Nothing)
-    terminalWidth <- getTerminalWidth
-    let drawChart = createChart chartStyle terminalWidth
-    void $ watchBuild drawChart
+    -- draw profiling chart interactively and get all the entries after that
+    entries <- withInteractiveProfiling chartStyle
+
+    -- draw the chart in the normal terminal screen buffer now
+    drawChart <- getChartDrawer chartStyle
+    putTextLn $ drawChart entries
+
+    putText $ unlines
+        [ "✨  Done!"
+        , "🆙  Scroll up to view full profiling chart."
+        , "💾  To save the results in a file (to view later without recompilation), run:"
+        , ""
+        , "    cabal build ... | dr-cabal profile --output=my_file.json"
+        ]
 
 profileWithOutput :: Style -> FilePath -> IO ()
 profileWithOutput chartStyle outputFile = do
-    hSetBuffering stdout (BlockBuffering Nothing)
-    terminalWidth <- getTerminalWidth
-    let drawChart = createChart chartStyle terminalWidth
-    entries <- watchBuild drawChart
+    -- draw profiling chart interactively and get all the entries after that
+    entries <- withInteractiveProfiling chartStyle
     writeEntries outputFile entries
+
+    putText $ unlines
+        [ "✨  Done!"
+        , "💾  Profiling entries are saved in the file: " <> toText outputFile
+        , "👀  To view the results from the saved file, run:"
+        , ""
+        , "    dr-cabal profile --input=" <> toText outputFile
+        ]
 
 profileFromInput :: Style -> FilePath -> IO ()
 profileFromInput chartStyle inputFile = do
@@ -52,6 +67,21 @@ profileFromInput chartStyle inputFile = do
     entries <- readEntries inputFile
     let chart = createChart chartStyle terminalWidth entries
     putTextLn chart
+
+-------------
+-- HELPERS --
+-------------
+
+withInteractiveProfiling :: Style -> IO [Entry]
+withInteractiveProfiling chartStyle = withAlternateBuffer $ do
+    hSetBuffering stdout (BlockBuffering Nothing)
+    drawChart <- getChartDrawer chartStyle
+    watchBuild drawChart
+
+getChartDrawer :: Style -> IO ([Entry] -> Text)
+getChartDrawer chartStyle = do
+    terminalWidth <- getTerminalWidth
+    pure $ createChart chartStyle terminalWidth
 
 createChart
     :: Style

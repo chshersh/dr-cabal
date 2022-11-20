@@ -12,10 +12,13 @@ Utility functions to work with the terminal output.
 module DrCabal.Terminal
     ( getTerminalWidth
     , clearScreen
+    , withAlternateBuffer
     ) where
 
 import Colourista.Short (u)
+import Control.Exception (bracket)
 import System.Console.ANSI (clearFromCursorToScreenEnd, cursorUpLine)
+
 import qualified System.Console.Terminal.Size as Terminal
 
 
@@ -45,3 +48,24 @@ clearScreen screenHeight = do
     when (screenHeight > 0) $
         cursorUpLine screenHeight
     clearFromCursorToScreenEnd
+
+{- | Run action in the alternate buffer and return to the normal
+screen after exception or SIGINT.
+
+__NOTE:__ This function always returns to the normal screen after the
+action. If you want to print something to the normal screen use the
+result of the given action afterwards.
+-}
+withAlternateBuffer :: IO a -> IO a
+withAlternateBuffer action = bracket
+    useAlternateScreenBuffer
+    (\_ -> useNormalScreenBuffer)
+    (\_ -> action)
+
+-- TODO: use functions from 'ansi-terminal'
+useAlternateScreenBuffer :: IO ()
+useAlternateScreenBuffer = putStrLn "\ESC[?1049h\ESC[H"
+
+-- TODO: use functions from 'ansi-terminal'
+useNormalScreenBuffer :: IO ()
+useNormalScreenBuffer = putStrLn "\ESC[?1049l"

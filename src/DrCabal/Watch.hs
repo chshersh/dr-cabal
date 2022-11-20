@@ -184,6 +184,12 @@ interactiveWorker inputActionRef drawChart =
 
     fmtOutput :: Text -> Output -> Text
     fmtOutput frame Output{..} =
-        frame <> " " <> outputCabalLog <> "\n" <> case outputEntries of
+        chart <> log
+      where
+        chart :: Text
+        chart = case outputEntries of
             [] -> ""
             _  -> drawChart outputEntries
+
+        log :: Text
+        log = frame <> " " <> outputCabalLog
